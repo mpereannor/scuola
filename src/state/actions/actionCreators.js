@@ -45,14 +45,16 @@ export const login = credentials => dispatch => {
     })
 }
 
-export const updatePosition = credentials => dispatch => { 
+export const updatePosition = (id, payload)=> dispatch => { 
     dispatch({ type: types.REQUEST_START });
+        console.log(`the new id `, id);
     axiosWithAuth()
-    .patch(updatePositionUrl, credentials)
+    .patch(`updatePositionUrl${id}`, payload)
     .then(res => { 
+        Cookies.set('token', res.data)
         history.push('/users');
         dispatch({ 
-            type: types.UPDATE_POSITION_SUCCESS, payload: res.data
+            type: types.UPDATE_POSITION_SUCCESS, payload: res.data.position
         })
     })
     .catch(error => { 

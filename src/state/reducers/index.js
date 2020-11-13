@@ -25,10 +25,8 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
         case types.REGISTER_SUCCESS:
             return {
                 ...state,
-                // id: action.payload.id,
-                // username: action.payload.username,
-                // email: action.payload.email,
-                user: action.payload,
+                id: action.payload.id,
+                position: action.payload.position,
                 message: action.payload.message,
                 isFetching: false, 
                 isLoggedIn: true
