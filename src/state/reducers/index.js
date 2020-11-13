@@ -59,6 +59,23 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
                 error: action.payload,
                 isFetching: false
             }
+        case types.UPDATE_POSITION_SUCCESS:
+            return {
+                ...state,
+                // email: action.payload.email,
+                // password: action.payload.password,
+                user: {},
+                isFetching: false,
+                isLoggedIn: true,
+            };
+        
+        case types.UPDATE_POSITION_FAILURE:
+            return{ 
+                ...state,
+                user: {},
+                error: action.payload,
+                isFetching: false
+            }
 
         case types.LOGOUT:
             return {
