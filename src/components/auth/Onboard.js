@@ -4,57 +4,47 @@ import { connect } from 'react-redux';
 import { updatePosition } from '../../state/actions/actionCreators';
 import { Link } from 'react-router-dom';
 
-
-
 const Onboard = (props) => { 
-    const { control, handleSubmit } = useForm();
+    const {register, handleSubmit } = useForm();
     const onSubmit = (data) => props.updatePosition(data);
     return(
             <form onSubmit={handleSubmit(onSubmit)}>
-                <InputLabel>What's your current position in School?</InputLabel>
-                <Controller 
+                <label>What's your current position in School?</label>
+                <select
+                id="position"
                 name="position"
-                as={Select}
-                options={[
-                    { value: "admin", label: "Admin" },
-                    { value: "tutor", label: "Tutor" },
-                    { value: "student", label: "Student" },
-                    { value: "guest", label: "Guest" },
-                ]}
-                control={control}
-                defaultValue=""
-                />
-                <input type="submit" />
+                ref={register}
+                >
+                    <option
+                    selected disabled hidden
+                     >
+                    Choose Here
+                    </option>
+
+                    <option
+                    value="admin"
+                    >
+                    Admin
+                    </option>  
+                    <option
+                    value="tutor"
+                    >
+                    Tutor
+                    </option>  
+                    <option
+                    value="student"
+                    >
+                    Student
+                    </option>  
+                    <option
+                    value="guest"
+                    >
+                        Guest
+                    </option>  
+                </select>
+                <input type="submit"/>
             </form>
     )
 }
-
-
-
-const ReactHookFormSelect = ({
-    name,
-    label,
-    control,
-    defaultValue,
-    children,
-    ...props
-  }) => {
-    const labelId = `${name}-label`;
-    return (
-      <FormControl {...props}>
-        <InputLabel id={labelId}>{label}</InputLabel>
-        <Controller
-          as={
-            <Select labelId={labelId} label={label}>
-              {children}
-            </Select>
-          }
-          name={name}
-          control={control}
-          defaultValue={defaultValue}
-        />
-      </FormControl>
-    );
-  };
 
 export default connect((state) => state.onboard, { updatePosition})(Onboard);
