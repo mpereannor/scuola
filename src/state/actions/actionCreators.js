@@ -5,7 +5,8 @@ import { history } from '../../index'
 
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
-const userUrl = 'api/user';
+const userUrl = 'api/users';
+const updatePositionUrl= 'api/auth/position'
 
 export const register = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START });
@@ -41,6 +42,23 @@ export const login = credentials => dispatch => {
     .catch(error => { 
         dispatch({ 
             type: types.LOGIN_FAILURE, payload: error.message})
+    })
+}
+
+export const updatePosition = credentials => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .patch(updatePositionUrl, credentials)
+    .then(res => { 
+        history.push('/users');
+        dispatch({ 
+            type: types.UPDATE_POSITION_SUCCESS, payload: res.data
+        })
+    })
+    .catch(error => { 
+        dispatch({ 
+            type: types.UPDATE_POSITION_FAILURE, payoad: error.message
+        })
     })
 }
 
