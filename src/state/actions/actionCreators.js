@@ -54,7 +54,7 @@ export const updatePosition = (id, positionData)=> dispatch => {
     console.log(Cookies.get('userId'));
     id = Cookies.get('userId')
     axiosWithAuth()
-    .patch(`/api/users/${id}/position`, positionData)
+    .patch(`/api/users/${id}`, positionData)
     .then(res => { 
         dispatch({ 
             type: types.UPDATE_POSITION_SUCCESS, payload: res.data.position

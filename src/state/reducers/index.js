@@ -19,7 +19,7 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
             return { 
                 // ...state,
                 isFetching: true,
-                error: ''
+               error: ''
             };
         case types.REGISTER_SUCCESS:
             return {
