@@ -7,15 +7,17 @@ const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
 const userUrl = 'api/users';
 const updatePositionUrl= 'api/auth/position'
-
+// const updatePositionUrl = 'api/user'
 export const register = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START });
-    Axios()
+    axiosWithAuth()
     .post(registerUrl, credentials)
-    .then(res => { 
+    .then(res => {
         Cookies.set('token', res.data.token);
-        console.log('token')
-        history.push('/users');
+        Cookies.set('userId', res.data.id);
+        Cookies.set('position', res.data.position)
+        console.log(res.data)
+        history.push(`/onboard/${res.data.id}`);
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });
@@ -33,8 +35,9 @@ export const login = credentials => dispatch => {
     .post(loginUrl, credentials)
     .then(res => { 
         console.log(res);
-        Cookies.set('token', res.data)
-        history.push('/users');
+        Cookies.set('token', res.data);
+        Cookies.set('userId', res.data._id);
+        history.push('/onboard/');
         dispatch({ 
             type: types.LOGIN_SUCCESS, payload: res.data
         })
@@ -45,17 +48,19 @@ export const login = credentials => dispatch => {
     })
 }
 
-export const updatePosition = (id, payload)=> dispatch => { 
+export const updatePosition = (id, positionData)=> dispatch => { 
     dispatch({ type: types.REQUEST_START });
-        console.log(`the new id `, id);
+        // console.log(history.params(id));
+    console.log(Cookies.get('userId'));
+    id = Cookies.get('userId')
     axiosWithAuth()
-    .patch(`updatePositionUrl${id}`, payload)
+    .patch(`/api/users/${id}/position`, positionData)
     .then(res => { 
-        Cookies.set('token', res.data)
-        history.push('/users');
         dispatch({ 
             type: types.UPDATE_POSITION_SUCCESS, payload: res.data.position
         })
+        console.log('infinity', res.data)
+        history.push('/users');
     })
     .catch(error => { 
         dispatch({ 

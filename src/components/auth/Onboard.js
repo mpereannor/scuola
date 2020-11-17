@@ -2,10 +2,11 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { updatePosition } from '../../state/actions/actionCreators';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Onboard = (props) => { 
     // const { id } =  req.match.params;
+    // const { id } =  useParams().id.trim()
     const {register, handleSubmit } = useForm();
     const onSubmit = (data) => props.updatePosition(data);
     return(

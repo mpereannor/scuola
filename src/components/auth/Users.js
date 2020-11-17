@@ -27,7 +27,7 @@ const UserData = ({ user }) => {
     const { username, position, id } = user
     return(
         <div>
-            <p>with current {id } {username} is a <span>{position}</span></p>
+            <p> {username} is a <span>{position}</span></p>
         </div>
     )
 

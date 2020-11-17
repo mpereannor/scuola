@@ -16,14 +16,14 @@ export const axiosWithAuth = () => {
   return axios.create({
     headers: {
       "Content-Type": "application/json",
-      'Access-Control-Origin': '*',
       'Access-Control-Allow-Credentials': true,
-    //   cookie: Cookies.get('token'),
-      Authorization: Cookies.get('token')
-    // 'token': Cookies.get('token')
+      Authorization: Cookies.get('sessionId')
+    //   .get('token')
     },
     credentials: 'include',
     baseURL,
     withCredentials: true
   });
 };
+
+// headers: {authorization: localStorage.getItem('authorization') ? localStorage.getItem('authorization') : null},
