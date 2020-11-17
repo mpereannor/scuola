@@ -5,8 +5,6 @@ import { updatePosition } from '../../state/actions/actionCreators';
 import { Link, useParams } from 'react-router-dom';
 
 const Onboard = (props) => { 
-    // const { id } =  req.match.params;
-    // const { id } =  useParams().id.trim()
     const {register, handleSubmit } = useForm();
     const onSubmit = (data) => props.updatePosition(data);
     return(
