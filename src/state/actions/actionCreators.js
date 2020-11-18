@@ -6,6 +6,7 @@ import { history } from '../../index'
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
 const userUrl = 'api/users/';
+const boardUrl = 'api/boards/';
 export const register = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()
@@ -48,12 +49,12 @@ export const updatePosition = (id, positionData)=> dispatch => {
     dispatch({ type: types.REQUEST_START });
     id = Cookies.get('userId')
     axiosWithAuth()
-    .patch(`userUrl${id}`, positionData)
+    .patch(`api/users/${id}`, positionData)
     .then(res => { 
         dispatch({ 
             type: types.UPDATE_POSITION_SUCCESS, payload: res.data.position
         })
-        history.push('/users');
+        history.push('/board');
     })
     .catch(error => { 
         dispatch({ 
@@ -86,3 +87,24 @@ export const getUsers = () => dispatch => {
         });
     });
 };
+
+
+export const createBoard = boardData => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .post(boardUrl, boardData)
+    .then(res => { 
+        dispatch({ 
+            type: types.CREATE_BOARD_SUCCESS, payload: res.data
+        })
+        console.log('boardData', res.data);
+    })
+    .catch(error => { 
+        dispatch({ 
+            type: types.CREATE_BOARD_FAILURE, payload: error.message
+        })
+    })
+}
+
+
+
