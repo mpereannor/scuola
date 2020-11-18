@@ -1,7 +1,6 @@
 import * as types from '../actions/actionTypes';
 import Cookies from 'js-cookie';
 const initialOnboardingState = { 
-    // user : {},
     user_id: Cookies.get('userId') || '',
     username: Cookies.get('username') || '',
     fullname: Cookies.get('fullname')|| '',
@@ -17,15 +16,12 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
     switch (action.type) {
         case types.REQUEST_START:
             return { 
-                // ...state,
                 isFetching: true,
                 error: ''
             };
         case types.REGISTER_SUCCESS:
             return {
                 ...state,
-                // user: action.payload,
-                // id: action.payload.id,
                 user_id: action.payload.id,
                 username: action.payload.username,
                 fullname: action.payload.fullname,
@@ -39,7 +35,6 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
             case types.REGISTER_FAILURE: 
             return { 
                 ...state,
-                // user: {},
                 error: action.payload,
                 isFetching: false
             };
@@ -49,9 +44,7 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
                 ...state,
                 username: action.payload.username,
                 email: action.payload.email,
-                // user: action.payload,
                 message: action.payload.message,
-                // user: {},
                 isFetching: false,
                 isLoggedIn: true,
             };
@@ -59,16 +52,13 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
         case types.LOGIN_FAILURE:
             return{ 
                 ...state,
-                // user: {},
                 error: action.payload,
                 isFetching: false
             }
         case types.UPDATE_POSITION_SUCCESS:
             return {
                 ...state,
-                // email: action.payload.email,
-                // password: action.payload.password,
-                // id: action.payload.id,
+    
                 position: action.payload.position,
                 isFetching: false,
                 isLoggedIn: true,
@@ -77,7 +67,6 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
         case types.UPDATE_POSITION_FAILURE:
             return{ 
                 ...state,
-                // user: {},
                 error: action.payload,
                 isFetching: false
             }
@@ -132,12 +121,8 @@ export const userViewReducer = (state = initialUsers, action) => {
 }
 
 const initialBoard = {
-    board : { 
-        
-    },
-    error : { 
-        
-    },
+    board : {},
+    error : {},
     message: '',
     isFetching: false
 }
