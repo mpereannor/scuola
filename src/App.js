@@ -5,6 +5,7 @@ import Login from './components/auth/Login';
 import Onboard from './components/auth/Onboard';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Users from './components/auth/Users';
+import Board from './components/board/Board';
 
 const App = () => { 
 
@@ -29,6 +30,10 @@ const App = () => {
             <PrivateRoute
                 path='/onboard'
                 component={Onboard}
+            />
+            <PrivateRoute
+                path='/board'
+                component={Board}
             />
         </div>
     )

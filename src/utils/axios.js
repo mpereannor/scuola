@@ -18,7 +18,6 @@ export const axiosWithAuth = () => {
       "Content-Type": "application/json",
       'Access-Control-Allow-Credentials': true,
       Authorization: Cookies.get('sessionId')
-    //   .get('token')
     },
     credentials: 'include',
     baseURL,
@@ -26,4 +25,5 @@ export const axiosWithAuth = () => {
   });
 };
 
-// headers: {authorization: localStorage.getItem('authorization') ? localStorage.getItem('authorization') : null},
+
+// const session = Cookies.get('sessionId');
