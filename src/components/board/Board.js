@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createBoard } from "../../state/actions/actionCreators";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField, Radio } from "@material-ui/core";
+import { Button, TextField, Radio, Typography } from "@material-ui/core";
 import { theme } from "../../theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,26 +52,36 @@ const Register = (props) => {
           inputProps={{ maxLength: 280 }}
           
           />
-        <Radio
-        inputRef={register}
-        checked={selectedValue === 'public'}
-        onChange={handleChange}
-        value="public"
-        name="board_type"
-        label="Public"
-        labelPlacement='end'
-        // inputProps={{ 'aria-label': 'A' }}
-        />
-        <Radio
-        inputRef={register}
-        checked={selectedValue === 'private'}
-        onChange={handleChange}
-        value="private"
-        name="board_type"
-        label='Private'
-        labelPlacement='end'
-        // inputProps={{ 'aria-label': 'B' }}
-        />
+        <div>
+            <Typography variant="h7" gutterBottom>
+                Public
+            </Typography>
+            <Radio
+            inputRef={register}
+            checked={selectedValue === 'public'}
+            onChange={handleChange}
+            value="public"
+            name="board_type"
+            label="Public"
+            labelPlacement='end'
+            inputProps={{ 'aria-label': 'Public' }}
+            />
+        </div>
+        <div>
+            <Typography variant="h7" gutterBottom>
+                Private
+            </Typography>
+            <Radio
+            inputRef={register}
+            checked={selectedValue === 'private'}
+            onChange={handleChange}
+            value="private"
+            name="board_type"
+            label='Private'
+            labelPlacement='end'
+            inputProps={{ 'aria-label': 'Private' }}
+            />
+        </div>
         <Button
           type="submit"
           fullWidth
