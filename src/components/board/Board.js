@@ -53,7 +53,7 @@ const Register = (props) => {
           
           />
         <div>
-            <Typography variant="h7" gutterBottom>
+            <Typography variant="button" gutterBottom>
                 Public
             </Typography>
             <Radio
@@ -63,12 +63,11 @@ const Register = (props) => {
             value="public"
             name="board_type"
             label="Public"
-            labelPlacement='end'
             inputProps={{ 'aria-label': 'Public' }}
             />
         </div>
         <div>
-            <Typography variant="h7" gutterBottom>
+            <Typography variant="button" gutterBottom>
                 Private
             </Typography>
             <Radio
@@ -78,7 +77,6 @@ const Register = (props) => {
             value="private"
             name="board_type"
             label='Private'
-            labelPlacement='end'
             inputProps={{ 'aria-label': 'Private' }}
             />
         </div>
