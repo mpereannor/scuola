@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { connect } from "react-redux";
+import { createUserProfile } from "../../state/actions/actionCreators";
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 

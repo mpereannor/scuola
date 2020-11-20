@@ -89,6 +89,30 @@ export const getUsers = () => dispatch => {
 };
 
 
+
+export const createUserProfile = (userId, userProfileData) => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .put(`${userUrl}/${userId}/profile`, userProfileData)
+    .then(res => { 
+        dispatch({ 
+            type: types.CREATE_USER_PROFILE_SUCCCESS,
+            payload: res.data
+        })
+    })
+    .catch(error => { 
+        dispatch({ 
+            type: types.CREATE_USER_PROFILE_FAILURE
+        })
+    })
+};
+
+
+
+
+
+
+
 export const createBoard = boardData => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()

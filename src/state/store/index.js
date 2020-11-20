@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 const reducerCollection = combineReducers({ 
     onboard: reducers.onboardingReducer,
     allUsers: reducers.userViewReducer,
-    board: reducers.boardReducer
+    board: reducers.boardReducer,
+    profile: reducers.profileReducer
 })
 
 const store = createStore(
