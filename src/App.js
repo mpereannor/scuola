@@ -6,6 +6,7 @@ import Onboard from './components/auth/Onboard';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Users from './components/auth/Users';
 import Board from './components/board/Board';
+import NavBar from './components/layouts/Navbar.js'
 
 const App = () => { 
 
@@ -34,6 +35,10 @@ const App = () => {
             <PrivateRoute
                 path='/board'
                 component={Board}
+            />
+            <Route
+            path='/nav'
+            component={NavBar}
             />
         </div>
     )
