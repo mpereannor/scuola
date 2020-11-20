@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Register = (props) => {
+
+const CreateBoard = (props) => {
   const classes = useStyles();
   const [ selectedValue, setSelectedValue ] = useState('public');
   const handleChange = (event) => { 
@@ -99,4 +100,6 @@ const Register = (props) => {
   );
 };
 
-export default connect((state) => state.onboard, { createBoard })(Register);
+
+
+export default connect((state) => state.onboard, { createBoard })(CreateBoard);
