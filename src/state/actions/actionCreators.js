@@ -7,6 +7,7 @@ const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
 const userUrl = 'api/users/';
 const boardUrl = 'api/boards/';
+
 export const register = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()
@@ -92,11 +93,12 @@ export const getUsers = () => dispatch => {
 
 export const createUserProfile = (userId, userProfileData) => dispatch => { 
     dispatch({ type: types.REQUEST_START });
+    userId = Cookies.get('userId')
     axiosWithAuth()
     .put(`${userUrl}/${userId}/profile`, userProfileData)
     .then(res => { 
         dispatch({ 
-            type: types.CREATE_USER_PROFILE_SUCCCESS,
+            type: types.CREATE_USER_PROFILE_SUCCESS,
             payload: res.data
         })
     })
@@ -105,9 +107,25 @@ export const createUserProfile = (userId, userProfileData) => dispatch => {
             type: types.CREATE_USER_PROFILE_FAILURE
         })
     })
-};
+}
 
-
+export const displayUserProfile = userId => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .get(`${userUrl}/${userId}`)
+    .then(res => { 
+        dispatch({ 
+            type: types.DISPLAY_USER_PROFILE_SUCCESS,
+            payload: res.data
+        })
+    })
+    .catch(error => { 
+        dispatch({ 
+            type: types.DISPLAY_USER_PROFILE_FAILURE,
+            payload: error.message
+        });
+    });
+}
 
 
 
