@@ -120,14 +120,14 @@ export const profileReducer = (state = initialProfile, action) => {
                 bio: action.payload.bio,
                 message: action.payload.message,
                 isFetching: false,
-            }
+            };
 
         case types.CREATE_BOARD_FAILURE:
             return { 
                 ...state,
                 error: action.payload,
                 isFetching: false
-            }
+            };
         
         default:
             return state
@@ -160,7 +160,14 @@ export const userViewReducer = (state = initialUsers, action) => {
                 ...state, 
                 error: action.payload,
                 isFetching: false
-            }
+            };
+        
+        case types.DISPLAY_USER_PROFILE_SUCCESS:
+            return{ 
+                ...state,
+                userProfile: state.profile.filter((item, index) => index === action.user_id),
+                isFetching: false
+            };
         default: 
             return{
                 ...state, 
