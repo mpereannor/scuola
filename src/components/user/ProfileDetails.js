@@ -15,62 +15,49 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const ProfileDetails = ({ className, userProfile, users, ...rest }) => {
-  const classes = useStyles();
-//   const [values, setValues] = useState({
-//     firstName: 'Katarina',
-//     lastName: 'Smith',
-//     email: 'demo@devias.io',
-//     phone: '',
-//     state: 'Alabama',
-//     country: 'USA'
-//   });
 
-const [profile, setProfile] = useState({
+const ProfileDetails = props => { 
+    const { 
+        className, 
+        userProfile,
+        createUserProfile,
+        users
+    } = props;
+
+    const classes = useStyles();
+
+const [profileData, setProfileData] = useState({
     age: 0,
     gender: '',
     location: '',
     bio : '',
 });
 
+// debugger
   const handleChange = (event) => {
-    setProfile({
-      ...profile,
+    setProfileData({
+      ...profileData,
       [event.target.name]: event.target.value
     });
   };
 
-  const onSubmit = event => {
+  console.log('dreams:', createUserProfile)
+  const handleSubmit = event => {
       event.preventDefault();
-      createUserProfile(profile)
+      createUserProfile(profileData)
   }
 
   return (
     <form
-    onSubmit={onSubmit}
+    onSubmit={handleSubmit}
       autoComplete="off"
       noValidate
       className={clsx(classes.root, className)}
-      {...rest}
     >
       <Card>
         <CardHeader
@@ -95,20 +82,10 @@ const [profile, setProfile] = useState({
                 name="age"
                 onChange={handleChange}
                 required
-                value={profile.age}
+                value={profileData.age}
                 variant="outlined"
                 type="number"
               />
-              {/* <TextField
-                fullWidth
-                helperText="Please specify your fullname"
-                label="First name"
-                name="firstName"
-                onChange={handleChange}
-                required
-                value={values.firstName}
-                variant="outlined"
-              /> */}
             </Grid>
             <Grid
               item
@@ -121,18 +98,9 @@ const [profile, setProfile] = useState({
                 name="gender"
                 onChange={handleChange}
                 required
-                value={profile.gender}
+                value={profileData.gender}
                 variant="outlined"
               />
-              {/* <TextField
-                fullWidth
-                label="Last name"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
-                variant="outlined"
-              /> */}
             </Grid>
             <Grid
               item
@@ -145,18 +113,9 @@ const [profile, setProfile] = useState({
                 name="location"
                 onChange={handleChange}
                 required
-                value={profile.location}
+                value={profileData.location}
                 variant="outlined"
               />
-              {/* <TextField
-                fullWidth
-                label="Email Address"
-                name="email"
-                onChange={handleChange}
-                required
-                value={values.email}
-                variant="outlined"
-              /> */}
             </Grid>
             <Grid
               item
@@ -168,60 +127,11 @@ const [profile, setProfile] = useState({
                 label=" Bio"
                 name="bio"
                 onChange={handleChange}
-                value={profile.bio}
+                value={profileData.bio}
                 variant="outlined"
               />
-              {/* <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              /> */}
+             
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              {/* <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              /> */}
-            </Grid>
-            {/* <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />
@@ -247,4 +157,3 @@ ProfileDetails.propTypes = {
 };
 
 export default connect((state) => state.profile, {createUserProfile})(ProfileDetails);
-// export default ProfileDetails;
