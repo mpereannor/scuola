@@ -47,8 +47,9 @@ const App = () => {
             component={ProfileDetails}
             />
             <Route
-            path='/user'
-            component={User}
+            path='/user/:id'
+            render={ props => <User {...props} />}
+            // component={User}
             />
         </div>
     )

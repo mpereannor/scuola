@@ -24,9 +24,7 @@ const useStyles = makeStyles(() => ({
 const ProfileDetails = props => { 
     const { 
         className, 
-        userProfile,
-        createUserProfile,
-        users
+        createUserProfile
     } = props;
 
     const classes = useStyles();
@@ -45,7 +43,6 @@ const [profileData, setProfileData] = useState({
     });
   };
 
-  console.log('dreams:', createUserProfile)
   const handleSubmit = event => {
       event.preventDefault();
       createUserProfile(profileData)
@@ -55,7 +52,7 @@ const [profileData, setProfileData] = useState({
     <form
     onSubmit={handleSubmit}
       autoComplete="off"
-      noValidate
+    //   noValidate
       className={clsx(classes.root, className)}
     >
       <Card>
@@ -142,6 +139,7 @@ const [profileData, setProfileData] = useState({
           <Button
             color="primary"
             variant="contained"
+            type="submit"
           >
             Save details
           </Button>

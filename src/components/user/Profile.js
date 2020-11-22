@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser, getUsers, displayUserProfile } from '../../state/users';
- 
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { 
+    getUser,
+    displayUserProfile
+} from '../../state/users';
 import {
   Avatar,
   Box,
@@ -27,19 +30,22 @@ const useStyles = makeStyles(() => ({
 const Profile = props => {
     const {
         className,
-        getUsers,
         getUser,
-        displayUserProfile,
-        users,
         user,
+        userProfile,
     } = props;
+
+    console.log('bread', props)
     
     const classes = useStyles();
     
-    const { username, fullname } = user;
-
+    const { username, fullname, email } = user;
+    const {  age } = userProfile;
+    
+    const { userId }  = useParams();
     useEffect(() => { 
-      getUser();
+      getUser(userId);
+      displayUserProfile(userId);
   }, [])
 
   return (
@@ -68,7 +74,21 @@ const Profile = props => {
             gutterBottom
             variant="h3"
           >
-            {fullname}
+            {age}
+          </Typography>
+          <Typography
+            color="textPrimary"
+            gutterBottom
+            variant="h3"
+          >
+            {email}
+          </Typography>
+          <Typography
+            color="textPrimary"
+            gutterBottom
+            variant="h3"
+          >
+            {age}
           </Typography>
         </Box>
       </CardContent>
@@ -80,5 +100,16 @@ Profile.propTypes = {
   className: PropTypes.string
 };
 
-// export default Profile;
-export default connect((state) => state.allUsers, { getUser })(Profile);
+const mapStateToProps = state => { 
+    return { 
+        user: state.allUsers.user,
+        userProfile: state.profile.userProfile
+    }
+}
+
+export default connect(mapStateToProps,
+     { 
+    getUser,
+    displayUserProfile
+})(Profile);
+

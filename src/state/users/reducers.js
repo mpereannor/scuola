@@ -34,7 +34,7 @@ export const userViewReducer = (state = initialUsers, action) => {
         case types.GET_USER_SUCCESS:
             return {
                 ...state, 
-                user: state.users.filter((item => item.user_id === action.user_id)), 
+                user: action.payload,
                 isFetching: false
             };
 
@@ -61,7 +61,8 @@ const initialProfile = {
     bio: '',
     message: '',
     error: {},
-    isFetching: false
+    isFetching: false, 
+    userProfile: {}
 };
 
 export const profileReducer = (state = initialProfile, action) => { 
