@@ -87,7 +87,6 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
 
 //profile
 const initialProfile = { 
-    profile: { 
         image: '',
         // avatar: '',
         age: 0,
@@ -96,10 +95,7 @@ const initialProfile = {
         bio: '',
         message: '',
         error: {},
-        isFetching: false,
-    
-
-    }
+        isFetching: false
 }
 
 export const profileReducer = (state = initialProfile, action) => { 
@@ -122,8 +118,23 @@ export const profileReducer = (state = initialProfile, action) => {
                 isFetching: false,
             };
 
-        case types.CREATE_BOARD_FAILURE:
+        case types.CREATE_USER_PROFILE_FAILURE:
             return { 
+                ...state,
+                error: action.payload,
+                isFetching: false
+            };
+        
+        case types.DISPLAY_USER_PROFILE_SUCCESS:
+            return{ 
+                ...state,
+                // userProfile: state.profile.filter((item, index) => index === action.user_id),
+                userProfile: action.payload,
+                isFetching: false
+            };
+
+        case types.DISPLAY_USER_PROFILE_FAILURE:
+            return{ 
                 ...state,
                 error: action.payload,
                 isFetching: false
@@ -134,10 +145,13 @@ export const profileReducer = (state = initialProfile, action) => {
     }
 }
 
+//user
 const initialUsers = { 
     users: [],
+    user: {},
+    isFetching: false,
     error: {},
-    isFetching: false
+    message: ''
 }
 
 export const userViewReducer = (state = initialUsers, action) => { 
@@ -161,11 +175,18 @@ export const userViewReducer = (state = initialUsers, action) => {
                 error: action.payload,
                 isFetching: false
             };
-        
-        case types.DISPLAY_USER_PROFILE_SUCCESS:
-            return{ 
-                ...state,
-                userProfile: state.profile.filter((item, index) => index === action.user_id),
+
+        case types.GET_USER_SUCCESS:
+            return {
+                ...state, 
+                user: state.users.filter((item => item.user_id === action.user_id)), 
+                isFetching: false
+            };
+
+        case types.GET_USER_FAILURE:
+            return{
+                ...state, 
+                error: action.payload,
                 isFetching: false
             };
         default: 
