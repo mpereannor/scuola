@@ -1,8 +1,7 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
-import { updatePosition } from '../../state/actions/actionCreators';
-import { Link, useParams } from 'react-router-dom';
+import { updatePosition } from '../../state/auth';
 
 const Onboard = (props) => { 
     const {register, handleSubmit } = useForm();

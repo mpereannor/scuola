@@ -6,7 +6,9 @@ import Onboard from './components/auth/Onboard';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Users from './components/auth/Users';
 import Board from './components/board/Board';
-import NavBar from './components/layouts/Navbar.js'
+import NavBar from './components/layouts/Navbar.js';
+import ProfileDetails from './components/user/ProfileDetails';
+import User from './components/user';
 
 const App = () => { 
 
@@ -39,6 +41,14 @@ const App = () => {
             <Route
             path='/nav'
             component={NavBar}
+            />
+            <Route
+            path='/profile'
+            component={ProfileDetails}
+            />
+            <Route
+            path='/user'
+            component={User}
             />
         </div>
     )

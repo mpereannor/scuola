@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser, getUsers, displayUserProfile } from '../../state/actions/actionCreators';
+import { getUser, getUsers, displayUserProfile } from '../../state/users';
  
 import PropTypes from 'prop-types';
 import clsx from 'clsx';

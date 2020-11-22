@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { createUserProfile } from "../../state/actions/actionCreators";
+import { createUserProfile, displayUserProfile, userProfile } from '../../../state/users'
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
@@ -92,7 +92,13 @@ import {
     }
   }));
 
-  const NavBar = ({ onMobileClose, openMobile }) => {
+  const NavBar = ({ 
+      onMobileClose,
+      openMobile,
+      users,
+      userProfile,
+      displayUserProfile
+     }) => {
     const classes = useStyles();
     const location = useLocation();
   
@@ -102,6 +108,11 @@ import {
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname]);
+
+
+    useEffect(() => { 
+        displayUserProfile();
+    }, [])
 
     const content = (
         <Box
@@ -118,7 +129,7 @@ import {
             <Avatar
               className={classes.avatar}
               component={Link}
-              src={user.avatar}
+              src={userProfile.image}
               to="/users"
             />
             <Typography
@@ -126,13 +137,19 @@ import {
               color="textPrimary"
               variant="h5"
             >
-              {user.name}
+              {userProfile.gender}
             </Typography>
             <Typography
               color="textSecondary"
               variant="body2"
             >
-              {user.jobTitle}
+              {userProfile.age}
+            </Typography>
+            <Typography
+              color="textSecondary"
+              variant="body2"
+            >
+              {userProfile.bio}
             </Typography>
           </Box>
           <Divider />
@@ -190,5 +207,6 @@ NavBar.propTypes = {
     openMobile: false
   };
   
-  export default NavBar;
+//   export default NavBar;
+  export default connect((state) => state.profile, { createUserProfile, displayUserProfile })(NavBar);
   

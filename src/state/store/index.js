@@ -1,12 +1,15 @@
-import * as reducers from '../reducers';
+import * as auth from '../auth';
+import * as board from '../board';
+import * as users from '../users';
+
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const reducerCollection = combineReducers({ 
-    onboard: reducers.onboardingReducer,
-    allUsers: reducers.userViewReducer,
-    board: reducers.boardReducer,
-    profile: reducers.profileReducer
+    onboard: auth.onboardingReducer,
+    allUsers: users.userViewReducer,
+    profile: users.profileReducer,
+    board: board.boardReducer,
 })
 
 const store = createStore(

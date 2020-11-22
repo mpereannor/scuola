@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
-import { createBoard } from "../../state/actions/actionCreators";
+import { createBoard } from '../../state/board';
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField, Radio, Typography } from "@material-ui/core";
