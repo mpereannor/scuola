@@ -1,16 +1,34 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
+
+import { ThemeProvider } from '@material-ui/core';
+import GlobalStyles from './globals/styles';
+import theme from './theme/';
+
+import routes from 'src/routes';
+
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Onboard from './components/auth/Onboard';
 import PrivateRoute from './components/auth/PrivateRoute';
-import Users from './components/auth/Users';
+import Users from './components/user/Users';
 import Board from './components/board/Board';
-import NavBar from './components/layouts/Navbar.js';
+import NavBar from './components/layouts/DashboardLayout/Navbar.js/index.js';
 import ProfileDetails from './components/user/ProfileDetails';
 import User from './components/user';
 
 const App = () => { 
+    const routing = useRoutes(routes);
+    return (
+        <ThemeProvider 
+        theme={ theme }
+        >
+            <GlobalStyles/>
+            { routing }
+        </ThemeProvider>
+    )
+};
+    /*
 
     return (
         <div
@@ -49,10 +67,10 @@ const App = () => {
             <Route
             path='/user/:id'
             render={ props => <User {...props} />}
-            // component={User}
             />
         </div>
     )
 }
 
+*/
 export default App;
