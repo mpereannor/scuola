@@ -40,12 +40,14 @@ const Profile = props => {
     const classes = useStyles();
     
     const { username, fullname, email } = user;
-    const {  age } = userProfile;
+    const {  bio, location, age, image } = userProfile;
+
+    console.log('bio', bio)
     
     const { userId }  = useParams();
     useEffect(() => { 
-      getUser(userId);
-      displayUserProfile(userId);
+        displayUserProfile(userId);
+        getUser(userId);
   }, [])
 
   return (
@@ -60,7 +62,7 @@ const Profile = props => {
         >
           <Avatar
             className={classes.avatar}
-            src={user.avatar}
+            src={image}
           />
           <Typography
             color="textPrimary"
@@ -89,6 +91,20 @@ const Profile = props => {
             variant="h3"
           >
             {age}
+          </Typography>
+          <Typography
+            color="textPrimary"
+            gutterBottom
+            variant="h3"
+          >
+            {location}
+          </Typography>
+          <Typography
+            color="textPrimary"
+            gutterBottom
+            variant="h3"
+          >
+            {bio}
           </Typography>
         </Box>
       </CardContent>

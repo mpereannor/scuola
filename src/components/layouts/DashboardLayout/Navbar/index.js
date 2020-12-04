@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { createUserProfile, displayUserProfile, userProfile } from '../../../state/users'
+import { createUserProfile, displayUserProfile, userProfile } from '../../../../state/users'
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
@@ -40,9 +40,9 @@ import {
       title: 'Dashboard'
     },
     {
-      href: '/users',
+      href: '/account',
       icon: UsersIcon,
-      title: 'Users'
+      title: 'User'
     },
     {
       href: '/reports',
@@ -55,9 +55,9 @@ import {
       title: 'Groups'
     },
     {
-      href: '/plugins',
+      href: '/settings',
       icon: SettingsIcon,
-      title: 'Plugins'
+      title: 'Settings'
     },
     {
       href: '/login',

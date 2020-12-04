@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const User = () => {
+const Account = () => {
   const classes = useStyles();
 
   return (
@@ -46,4 +46,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Account;

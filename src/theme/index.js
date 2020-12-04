@@ -11,7 +11,7 @@ const lindseyPalette = {
     orangealert: '#f17808'
 }
 
-export const theme = createMuiTheme({ 
+const theme = createMuiTheme({ 
     palette: {
         background: { 
             dark: lindseyPalette.darkblue,
@@ -32,3 +32,5 @@ export const theme = createMuiTheme({
         typography 
 })
 
+
+export default theme;

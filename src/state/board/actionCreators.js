@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 import { axiosWithAuth } from '../../utils/axios';
 import Cookies from 'js-cookie';
-import { history } from '../../index'
 
 const boardUrl = 'api/boards/';
 
