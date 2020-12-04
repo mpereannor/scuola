@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+import history from './utils/history';
 import { Provider } from 'react-redux';
 import store from './state/store'
 import App from './App';
@@ -11,7 +12,7 @@ ReactDOM.render(
 <Provider
     store={store}
 >
-    <BrowserRouter>
+    <BrowserRouter history={ history }>
             <App/>
     </BrowserRouter>
 </Provider>,
