@@ -33,22 +33,27 @@ const Profile = props => {
         getUser,
         user,
         userProfile,
+        bio,
+        image,
+        age,
+        gender, 
+        location,
     } = props;
 
     console.log('bread', props)
     
     const classes = useStyles();
     
-    const { username, fullname, email } = user;
-    const {  bio, location, age, image } = userProfile;
+    const { username, fullname, email, profile } = user;
+    // const { location, age, image } = userProfile;
 
-    console.log('bio', bio)
-    
     const { userId }  = useParams();
     useEffect(() => { 
         displayUserProfile(userId);
         getUser(userId);
-  }, [])
+  }, [
+       userId
+    ])
 
   return (
     <Card
@@ -90,7 +95,7 @@ const Profile = props => {
             gutterBottom
             variant="h3"
           >
-            {age}
+            {gender}
           </Typography>
           <Typography
             color="textPrimary"
@@ -119,7 +124,12 @@ Profile.propTypes = {
 const mapStateToProps = state => { 
     return { 
         user: state.allUsers.user,
-        userProfile: state.profile.userProfile
+        userProfile: state.profile.userProfile,
+        bio: state.profile.bio,
+        location: state.profile.location,
+        image: state.profile.image,
+        age: state.profile.age,
+        gender: state.profile.gender
     }
 }
 

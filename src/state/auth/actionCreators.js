@@ -59,7 +59,7 @@ export const updatePosition = (id, positionData)=> dispatch => {
         dispatch({ 
             type: types.UPDATE_POSITION_SUCCESS, payload: res.data.position
         })
-        history.push('/board');
+        history.push('/app/board');
     })
     .catch(error => { 
         dispatch({ 

@@ -5,21 +5,16 @@ import { createBoard } from '../../state/board';
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, TextField, Radio, Typography } from "@material-ui/core";
-import { theme } from "../../theme";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
+    root: {
+      backgroundColor: theme.palette.background.dark,
+      height: "100%",
+      paddingBottom: theme.spacing(3),
+      paddingTop: theme.spacing(3),
     },
-  },
-  input: {
-      "&:invalid": { 
-        //   border: "#f17808 solid 2px"
-      }
-  }
-}));
+  }));
+  
 
 
 const CreateBoard = (props) => {
@@ -33,6 +28,7 @@ const CreateBoard = (props) => {
 
   return (
     <div>
+        
       <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="name"

@@ -46,9 +46,8 @@ export const getUser = id => dispatch => {
 export const createUserProfile = (userId, userProfileData) => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     userId = Cookies.get('userId');
-    console.log('the user id is => ', userId)
     axiosWithAuth()
-    .put(`${userUrl}/${userId}/profile`, userProfileData)
+    .put(`${userUrl}${userId}/profile`, userProfileData)
     .then(res => { 
         dispatch({ 
             type: types.CREATE_USER_PROFILE_SUCCESS,
@@ -67,7 +66,7 @@ export const displayUserProfile = userId => dispatch => {
     dispatch({ type: types.REQUEST_START });
     userId = Cookies.get('userId');
     axiosWithAuth()
-    .get(`${userUrl}/${userId}/profile`)
+    .get(`${userUrl}${userId}/profile`)
     .then(res => { 
         dispatch({ 
             type: types.DISPLAY_USER_PROFILE_SUCCESS,

@@ -45,7 +45,7 @@ const [profileData, setProfileData] = useState({
 
   const handleSubmit = event => {
       event.preventDefault();
-      createUserProfile(profileData)
+      createUserProfile(profileData);
   }
 
   return (
