@@ -54,16 +54,27 @@ export const userViewReducer = (state = initialUsers, action) => {
 };
 
 const initialProfile = { 
-    // image: '',
-    // age: 0,
-    // gender: '',
-    // location: '', 
-    // bio: '',
-    message: '',
+    image: '',
+    age: 0,
+    gender:  '',
+    location:  '', 
+    bio:  '',
+    userProfile: {},
     error: {},
-    isFetching: false, 
-    userProfile: {}
+    message: '',
+    isFetching: false
 };
+// const initialProfile = { 
+//     image: Cookies.get('image') || '',
+//     age: Cookies.get('age') || 0,
+//     gender: Cookies.get('gender') || '',
+//     location: Cookies.get('location') || '', 
+//     bio: Cookies.get('bio') || '',
+//     userProfile: {},
+//     error: {},
+//     message: '',
+//     isFetching: false
+// };
 
 export const profileReducer = (state = initialProfile, action) => { 
     switch(action.type) { 
@@ -76,12 +87,12 @@ export const profileReducer = (state = initialProfile, action) => {
         case types.CREATE_USER_PROFILE_SUCCESS:
             return{ 
                 ...state,
-                userProfile: action.payload,
-                // image: action.payload.image,
-                // age: action.payload.age,
-                // gender: action.payload.gender,
-                // location: action.payload.location, 
-                // bio: action.payload.bio,
+                // userProfile: action.payload,
+                image: action.payload.image,
+                age: action.payload.age,
+                gender: action.payload.gender,
+                location: action.payload.location, 
+                bio: action.payload.bio,
                 message: action.payload.message,
                 isFetching: false,
             };
