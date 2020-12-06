@@ -2,24 +2,28 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { login } from "../../state/auth";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 import { theme } from "../../theme";
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    Link,
+    TextField,
+    Typography,
+    makeStyles
+  } from '@material-ui/core';
+import Page from '../Page'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-  input: {
-    "&:invalid": {
-      //   border: "#f17808 solid 2px"
-    },
-  },
-}));
+    root: {
+      backgroundColor: theme.palette.background.dark,
+      height: '100%',
+      paddingBottom: theme.spacing(3),
+      paddingTop: theme.spacing(3)
+    }
+  }));
 
 const Login = (props) => {
   const classes = useStyles();
@@ -28,40 +32,85 @@ const Login = (props) => {
   const emailRegex = "/^S+@S+.S+$/";
 
   return (
-    <div>
-      <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          id="email"
-          inputRef={register}
-          name="email"
-          label="email"
-          variant="outlined"
-          required
-          //   inputProps={ { pattern: emailRegex }}
-        />
+  <Page
+    className={classes.root}
+    title="Login"
+  >
+       <Box
+        display="flex"
+        flexDirection="column"
+        height="100%"
+        justifyContent="center"
+      >
+           <Container maxWidth="sm">
+           <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+            <Box mb={3}>
+                <Typography
+                color="textPrimary"
+                variant="h2"
+                >
+                    Sign in
+                </Typography>
+            </Box>
+            <Box
+            mt={3}
+            mb={1}
+            >
+                <Typography
+                align="center"
+                color="textSecondary"
+                variant="body1"
+                >
+                    login with email address
+                </Typography>
+            </Box>
+            <TextField
+            id="email"
+            inputRef={register}
+            name="email"
+            label="email"
+            variant="outlined"
+            required
+            />
 
-        <TextField
-          id="password"
-          inputRef={register}
-          name="password"
-          label="password"
-          type="password"
-          variant="outlined"
-          required
-        />
-        <Button type="submit" fullWidth variant="contained" color="primary">
-          Login
-        </Button>
-      </form>
-      <div>
-        <p>
-          Don't Have an Account?
-          <Link to="/register">
-            Register
-          </Link>
-        </p>
-      </div>
-    </div>
+            <TextField
+            id="password"
+            inputRef={register}
+            name="password"
+            label="password"
+            type="password"
+            variant="outlined"
+            required
+            />
+            <Box my={2}>
+                <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                size="large"
+                >
+                    Login 
+                </Button>        
+            </Box>
+            <Typography
+                color="textSecondary"
+                variant="body1"
+            >
+                Don&apos;t have an account?
+                {' '}
+                    <Link
+                    component={RouterLink}
+                    to="/register"
+                    variant="h6"
+                    >
+                        Sign up
+                    </Link>
+            </Typography>
+        </form>
+        </Container>
+      </Box>
+    </Page>
   );
 };
 
