@@ -2,100 +2,123 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { register } from "../../state/auth";
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
-import { theme } from "../../theme";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Container,
+  Link,
+  TextField,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
+import Page from "../Page";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
+    backgroundColor: theme.palette.background.dark,
+    height: "100%",
+    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3),
   },
-  input: {
-      "&:invalid": { 
-        //   border: "#f17808 solid 2px"
-      }
-  }
 }));
 
 const Register = (props) => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => props.register(data);
-  const emailRegex = '/^\S+@\S+\.\S+$/';
 
   return (
-    <div>
-      <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          id="username"
-          inputRef={register}
-          name="username"
-          label="username"
-          variant="outlined"
-          required
-          inputProps={{ maxLength: 20 }}
-        />
-        <TextField
-          id="fullname"
-          inputRef={register}
-          name="fullname"
-          label="fullname"
-          variant="outlined"
-          required
-          inputProps={{ maxLength: 50 }}
+    <Page className={classes.root} title="Register">
+      <Box
+        display="flex"
+        flexDirection="column"
+        height="100%"
+        justifyContent="center"
+      >
+        <Container maxWidth="sm">
+          <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+            <Box mb={3}>
+              <Typography color="textPrimary" variant="h2">
+                Create new account
+              </Typography>
+              <Typography color="textSecondary" gutterBottom variant="body2">
+                Use your email to create new account
+              </Typography>
+            </Box>
+            <TextField
+              id="username"
+              inputRef={register}
+              name="username"
+              label="Username"
+              variant="outlined"
+              required
+              inputProps={{ maxLength: 20 }}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              id="fullname"
+              inputRef={register}
+              name="fullname"
+              label="Fullname"
+              variant="outlined"
+              required
+              inputProps={{ maxLength: 50 }}
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              id="email"
+              inputRef={register}
+              name="email"
+              label="Email Address"
+              variant="outlined"
+              required
+              fullWidth
+              margin="normal"
+            />
 
-        />
-        <TextField
-          id="email"
-          inputRef={register}
-          name="email"
-          label="email"
-          variant="outlined"
-          required
-        //   inputProps={ { pattern: emailRegex }}
-        />
-        
-        <TextField
-          id="password"
-          inputRef={register}
-          name="password"
-          label="password"
-          type="password"
-          variant="outlined"
-          required
-        />
+            <TextField
+              id="password"
+              inputRef={register}
+              name="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              required
+            />
 
-        <TextField
-          id="passwordConfirmation"
-          inputRef={register}
-          name="passwordConfirmation"
-          label="password confirmation"
-          type="password"
-          variant="outlined"
-          required
-        />
-
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          Register
-        </Button>
-      </form>
-
-      <div>
-        <p>Already Have an Account?</p>
-        <Link to="/login">
-          Login
-        </Link>
-      </div>
-    </div>
+            <TextField
+              id="passwordConfirmation"
+              inputRef={register}
+              name="passwordConfirmation"
+              label="Confirm Password"
+              type="password"
+              variant="outlined"
+              required
+            />
+            <Box my={2}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                size="large"
+              >
+                Sign up now
+              </Button>
+            </Box>
+            <Typography color="textSecondary" variant="body1">
+              Have an account?{" "}
+              <Link component={RouterLink} to="/login" variant="h6">
+                Sign in
+              </Link>
+            </Typography>
+          </form>
+        </Container>
+      </Box>
+    </Page>
   );
 };
 
