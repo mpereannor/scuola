@@ -1,1 +1,2 @@
 [1204/125345.307:ERROR:exit_code_watcher_win.cc(87)] Failed to wait for process exit or stop event
+[1215/005934.842:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

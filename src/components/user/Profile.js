@@ -39,8 +39,6 @@ const Profile = props => {
         gender, 
         location,
     } = props;
-
-    console.log('bread', props)
     
     const classes = useStyles();
     
