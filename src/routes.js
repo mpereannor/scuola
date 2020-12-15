@@ -5,7 +5,7 @@ import MainLayout from './components/layouts/MainLayout';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Onboard from './components/auth/Onboard';
-import Board from './components/board/Board';
+import Board from './components/board/BoardDetails';
 import Account from './components/user';
 import Users from './components/user/Users';
 import Dashboard from './components/board/DashboardView.js'

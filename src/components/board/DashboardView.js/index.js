@@ -3,11 +3,10 @@ import {
   Container,
   Grid,
   makeStyles,
-  Divider
 } from '@material-ui/core';
 import Page from '../../Page';
+import BoardDetails from '../BoardDetails';
 import Board from '../Board';
-// import Groups from './Groups';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +37,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-            <Divider />
+            <BoardDetails />
             </Grid>
             <Grid
               item
@@ -47,7 +46,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-              <Divider />
+              <Board/>
             </Grid>
           </Grid>
         </Container>

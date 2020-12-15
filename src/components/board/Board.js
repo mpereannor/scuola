@@ -1,101 +1,60 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
-import { createBoard } from '../../state/board';
-import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField, Radio, Typography } from "@material-ui/core";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { 
+    getBoards
+} from '../../state/board';
+import {
+  Box,
+  Card,
+  CardContent,
+  Container,
+  Typography,
+  makeStyles
+} from '@material-ui/core';
+import BoardSingle from './BoardSingle'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      backgroundColor: theme.palette.background.dark,
-      height: "100%",
-      paddingBottom: theme.spacing(3),
-      paddingTop: theme.spacing(3),
-    },
-  }));
-  
+const useStyles = makeStyles(() => ({
+  root: {},
+  avatar: {
+    height: 100,
+    width: 100
+  }
+}));
 
+const Board = props => { 
+    const { 
+        className, 
+        displayBoard,
+        getBoards
+    } = props;
 
-const CreateBoard = (props) => {
-  const classes = useStyles();
-  const [ selectedValue, setSelectedValue ] = useState('public');
-  const handleChange = (event) => { 
-      setSelectedValue(event.target.value);
-  };
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => props.createBoard(data);
+    console.log('green', props);
 
-  return (
-    <div>
-        
-      <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          id="name"
-          inputRef={register}
-          name="name"
-          label="name"
-          variant="outlined"
-          required
-          inputProps={{ maxLength: 20 }}
-        />
-        <TextField
-          id="description"
-          inputRef={register}
-          name="description"
-          label="description"
-          variant="outlined"
-          required
-          inputProps={{ maxLength: 280 }}
-          
-          />
-        <div>
-            <Typography variant="button" gutterBottom>
-                Public
-            </Typography>
-            <Radio
-            inputRef={register}
-            checked={selectedValue === 'public'}
-            onChange={handleChange}
-            value="public"
-            name="board_type"
-            label="Public"
-            inputProps={{ 'aria-label': 'Public' }}
-            />
-        </div>
-        <div>
-            <Typography variant="button" gutterBottom>
-                Private
-            </Typography>
-            <Radio
-            inputRef={register}
-            checked={selectedValue === 'private'}
-            onChange={handleChange}
-            value="private"
-            name="board_type"
-            label='Private'
-            inputProps={{ 'aria-label': 'Private' }}
-            />
-        </div>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
+    const classes = useStyles();
+    
+    useEffect(() => { 
+        getBoards();
+    }, [getBoards]);
+
+    return (
+        <Container
+        className={clsx(classes.root, className)}
         >
-          Create New Board
-        </Button>
-      </form>
-
-      <div>
-        <Link to="/editboard">
-          Edit Board
-        </Link>
-      </div>
-    </div>
-  );
+            {displayBoard.map(board => (
+                <BoardSingle
+                    key={board.id}
+                    board={board}   
+                />
+            ))} 
+        </Container>
+      );
 };
 
-
-
-export default connect((state) => state.onboard, { createBoard })(CreateBoard);
+Board.propTypes = {
+    className: PropTypes.string
+  };
+  
+export default connect(state => state.board, { getBoards })(Board);
