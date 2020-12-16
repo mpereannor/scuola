@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { createUserProfile, displayUserProfile, userProfile } from '../../../../state/users'
+import { createUserProfile, displayUserProfile } from '../../../../state/users'
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
     Avatar,
     Box,
-    Button,
     Divider,
     Drawer,
     Hidden,
@@ -27,12 +26,6 @@ import {
   } from 'react-feather';
   import NavItem from './NavItem';
   
-  const user = {
-      avatar: 'avatar',
-    jobTitle: 'Senior Developer',
-    name: 'Katarina Smith'
-  };
-
   const items = [
     {
       href: '/dashboard',
@@ -95,7 +88,6 @@ import {
   const NavBar = ({ 
       onMobileClose,
       openMobile,
-      users,
       userProfile,
       displayUserProfile
      }) => {
@@ -207,6 +199,5 @@ NavBar.propTypes = {
     openMobile: false
   };
   
-//   export default NavBar;
   export default connect((state) => state.profile, { createUserProfile, displayUserProfile })(NavBar);
   

@@ -10,11 +10,8 @@ import {
 import {
   Avatar,
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
-  Divider,
   Typography,
   makeStyles
 } from '@material-ui/core';
@@ -39,8 +36,6 @@ const Profile = props => {
         gender, 
         location,
     } = props;
-
-    console.log('bread', props)
     
     const classes = useStyles();
     

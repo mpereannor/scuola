@@ -1,9 +1,9 @@
 import * as types from './actionTypes';
-import Cookies from 'js-cookie';
 
 const initialBoard = {
     board : {},
     error : {},
+    displayBoard: [],
     message: '',
     isFetching: false
 }
@@ -26,6 +26,20 @@ export const boardReducer = (state = initialBoard, action) => {
         case types.CREATE_BOARD_FAILURE:
             return{
                 ...state, 
+                error: action.payload,
+                isFetching: false
+            };
+
+        case types.DISPLAY_BOARDS_SUCCESS:
+            return { 
+                ...state,
+                displayBoard: action.payload,
+                isFetching: false
+            };
+        
+        case types.DISPLAY_BOARDS_FAILURE:
+            return { 
+                ...state,
                 error: action.payload,
                 isFetching: false
             }
