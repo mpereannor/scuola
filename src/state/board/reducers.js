@@ -1,5 +1,4 @@
 import * as types from './actionTypes';
-import Cookies from 'js-cookie';
 
 const initialBoard = {
     board : {},

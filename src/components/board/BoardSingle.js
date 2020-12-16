@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { 
-    getBoards
-} from '../../state/board';
+
 import {
   Box,
   Card,
@@ -32,10 +29,8 @@ const BoardSingle = props => {
 
     const classes = useStyles();
     const { name, description } = board;
+    console.log('grades', board)
     
-    useEffect(() => { 
-        getBoards();
-    }, [getBoards]);
 
     return (
         <Card

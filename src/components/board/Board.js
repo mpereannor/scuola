@@ -7,11 +7,7 @@ import {
     getBoards
 } from '../../state/board';
 import {
-  Box,
-  Card,
-  CardContent,
   Container,
-  Typography,
   makeStyles
 } from '@material-ui/core';
 import BoardSingle from './BoardSingle'
@@ -28,24 +24,23 @@ const Board = props => {
     const { 
         className, 
         displayBoard,
-        getBoards
+        getBoards, 
+        
     } = props;
-
-    console.log('green', props);
 
     const classes = useStyles();
     
     useEffect(() => { 
         getBoards();
-    }, [getBoards]);
+    }, []);
 
     return (
         <Container
         className={clsx(classes.root, className)}
         >
-            {displayBoard.map(board => (
+            {displayBoard.map((board) => (
                 <BoardSingle
-                    key={board.id}
+                    key={board._id}
                     board={board}   
                 />
             ))} 
@@ -57,4 +52,9 @@ Board.propTypes = {
     className: PropTypes.string
   };
   
-export default connect(state => state.board, { getBoards })(Board);
+export default connect(state => { 
+    return { 
+        displayBoard: state.board.displayBoard,
+
+    }
+}, {getBoards })(Board);
