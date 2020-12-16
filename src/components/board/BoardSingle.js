@@ -22,14 +22,14 @@ const useStyles = makeStyles(() => ({
 const BoardSingle = props => { 
     const { 
         className,
-        board       
+        display       
     } = props;
 
     console.log('green', props);
 
     const classes = useStyles();
-    const { name, description } = board;
-    console.log('grades', board)
+    const { id, name, description } = display;
+    console.log('grades', display)
     
 
     return (

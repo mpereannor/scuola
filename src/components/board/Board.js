@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { 
@@ -38,10 +37,10 @@ const Board = props => {
         <Container
         className={clsx(classes.root, className)}
         >
-            {displayBoard.map((board) => (
+            {displayBoard.map((display) => (
                 <BoardSingle
-                    key={board._id}
-                    board={board}   
+                    key={display.id}
+                    display={display}   
                 />
             ))} 
         </Container>
