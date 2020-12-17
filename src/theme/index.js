@@ -26,10 +26,13 @@ const theme = createMuiTheme({
             paper: colors.common.white
         },
         primary: { 
-            main: colors.indigo[500]
+            main: colors.indigo[900]
         },
         secondary: { 
-            main: colors.indigo[500]
+            main: colors.deepOrange[500]
+        },
+        tertiary: { 
+            main: colors.cyan[500]
         },
         text: { 
             primary: colors.blueGrey[900],
@@ -37,7 +40,7 @@ const theme = createMuiTheme({
          }
         },
         shadows,
-        typography 
+        typography
 })
 
 
