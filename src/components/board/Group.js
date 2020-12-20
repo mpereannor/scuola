@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import clsx from "clsx";
+import { Link } from "react-router-dom";
 import * as dayjs from "dayjs";
+import clsx from "clsx";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Box,
@@ -35,18 +36,12 @@ const useStyles = makeStyles(() => ({
 
 const Group = (props) => {
   const { className, groupDisplay } = props;
-
+  const { title, issue, createdAt } = groupDisplay;
   const classes = useStyles();
-
-  const { groups } = groupDisplay;
-
-  const issues = groups.map((i) => i.issue);
 
   return (
     <Card className={clsx(classes.root, className)}>
-      <CardHeader
-        title={groups.map((defaultGroup) => defaultGroup.title)}
-      ></CardHeader>
+      <CardHeader title={title}></CardHeader>
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={800}>
@@ -71,14 +66,14 @@ const Group = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {issues.map((issue) => (
-                <TableRow hover key={issue.id}>
-                  <TableCell></TableCell>
+              {issue.map((i) => (
+                <TableRow hover key={i.id}>
+                  <TableCell>{i.summary}</TableCell>
                   <TableCell>
-                    {dayjs(issue.createdAt).format("DD/MM/YYYY")}
+                    {dayjs(i.createdAt).format("DD/MM/YYYY")}
                   </TableCell>
                   <TableCell>
-                    <Chip color="primary" label={issue.status} size="small" />
+                    <Chip color="primary" label={i.status} size="small" />
                   </TableCell>
                 </TableRow>
               ))}
@@ -89,9 +84,8 @@ const Group = (props) => {
     </Card>
   );
 };
-
 Group.propTypes = {
   className: PropTypes.string,
 };
 
-export default connect((state) => state.board)(Group);
+export default connect((state) => state.userBoard)(Group);
