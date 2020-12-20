@@ -50,7 +50,7 @@ const BoardDetails = (props) => {
           
           />
         <div>
-            <Typography variant="button" gutterBottom>
+            <Typography variant="inherit" gutterBottom>
                 Public
             </Typography>
             <Radio
@@ -64,7 +64,7 @@ const BoardDetails = (props) => {
             />
         </div>
         <div>
-            <Typography variant="button" gutterBottom>
+            <Typography variant="inherit" gutterBottom>
                 Private
             </Typography>
             <Radio
@@ -98,4 +98,4 @@ const BoardDetails = (props) => {
 
 
 
-export default connect((state) => state.onboard, { createBoard })(BoardDetails);
+export default connect((state) => state.userBoard, { createBoard })(BoardDetails);

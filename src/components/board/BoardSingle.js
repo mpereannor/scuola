@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import { getBoard } from "../../state/board";
 import PropTypes from "prop-types";
-import Group from './Group';
+import Group from "./Group";
 import clsx from "clsx";
 import {
   Box,
@@ -22,23 +24,21 @@ const useStyles = makeStyles(() => ({
 }));
 
 const BoardSingle = (props) => {
-  const { className, display } = props;
+  const { className, displaySingleBoard, getBoard } = props;
+  const { name, description, groups } = displaySingleBoard;
+  const { boardId } = useParams();
 
-  console.log("green", props);
+  useEffect(() => {
+    getBoard(boardId);
+  }, [getBoard, boardId]);
 
   const classes = useStyles();
-  const { id, name, description } = display;
-  console.log("grades", display);
 
   return (
     <Card className={clsx(classes.root, className)}>
       <CardContent>
-        <Box 
-        // alignItems="left"
-        //  display="flex"
-        //   flexDirection="column"
-          >
-          <Grid item xs={6}>
+        <Box>
+          <Grid item xs={6} key={displaySingleBoard.id}>
             <Typography color="textPrimary" gutterBottom variant="h2">
               {name}
             </Typography>
@@ -60,6 +60,16 @@ const BoardSingle = (props) => {
               </Button>
             </Grid>
             <Grid item xs={3}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="small"
+              >
+                New Group of Items
+              </Button>
+            </Grid>
+            <Grid item xs={3}>
               <AccountCircleIcon />
             </Grid>
             <Grid item xs={3}>
@@ -70,9 +80,11 @@ const BoardSingle = (props) => {
             </Grid>
           </Grid>
           <Box>
-              <Group
-                groupDisplay={display}
-              />
+            {groups && groups.length > 0
+              ? groups.map((group) => (
+                  <Group key={group._id} groupDisplay={group} />
+                ))
+              : "Loading..."}
           </Box>
         </Box>
       </CardContent>
@@ -84,4 +96,11 @@ BoardSingle.propTypes = {
   className: PropTypes.string,
 };
 
-export default connect((state) => state.board)(BoardSingle);
+export default connect(
+  (state) => {
+    return {
+      displaySingleBoard: state.userBoard.displaySingleBoard,
+    };
+  },
+  { getBoard }
+)(BoardSingle);
