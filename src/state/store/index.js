@@ -9,7 +9,7 @@ const reducerCollection = combineReducers({
     onboard: auth.onboardingReducer,
     allUsers: users.userViewReducer,
     profile: users.profileReducer,
-    board: board.boardReducer,
+    userBoard: board.boardReducer,
 })
 
 const store = createStore(

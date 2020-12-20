@@ -36,7 +36,8 @@ export default {
   fontFamily: [
     "-apple-system",
     "BlinkMacSystemFont",
-    '"Roboto Slab"',
-    'serif'
+    '"Roboto"',
+    '"Open Sans"',
+    'sans-serif'
   ].join(","),
 };
