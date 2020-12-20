@@ -3,7 +3,8 @@ import { axiosWithAuth } from '../../utils/axios';
 
 const boardUrl = 'api/boards/';
 
-export const createBoard = boardData => dispatch => { 
+export const createBoard = boardData => dispatch => {
+
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()
     .post(boardUrl, boardData)
@@ -37,3 +38,41 @@ export const getBoards = () => dispatch => {
         });
     });
 }
+export const getBoard = (boardId) => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .get(`${boardUrl}user_boards/${boardId}`)
+    .then(res => { 
+        dispatch({ 
+            type: types.DISPLAY_BOARD_SUCCESS,
+            payload: res.data
+        })
+    })
+    .catch(error => { 
+        dispatch({ 
+            type: types.DISPLAY_BOARD_FAILURE,
+            payload: error.message
+        });
+    });
+}
+
+export const createGroup = (boardId, newGroupData) => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .put(`${boardUrl}${boardId}`, newGroupData)
+    .then(res => { 
+        dispatch({ 
+            type: types.CREATE_BOARD_SUCCESS,
+            payload: res.data
+        })
+    })
+    .catch(error => {
+        dispatch({
+
+            type: types.CREATE_BOARD_FAILURE,
+            payload: error.message
+        });
+    });
+}
+
+
