@@ -39,12 +39,12 @@ const Login = (props) => {
         <Container maxWidth="sm">
           <div>
             <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-              <Box mb={3}>
+              <Box mb={4}>
                 <Typography color="textPrimary" variant="h2">
                   Sign in
                 </Typography>
               </Box>
-              <Box mt={3} mb={1}>
+              <Box mt={4} mb={2}>
                 <Typography
                   align="center"
                   color="textSecondary"
@@ -53,24 +53,38 @@ const Login = (props) => {
                   Login with email address
                 </Typography>
               </Box>
-              <TextField
-                id="email"
-                inputRef={register}
-                name="email"
-                label="Email Address"
-                variant="outlined"
-                required
-              />
+              <Box
+                display="flex"
+                flexDirection="column"
+              >
+                <Box
+                >
+                  <TextField
+                    id="email"
+                    inputRef={register}
+                    name="email"
+                    label="Email Address"
+                    variant="outlined"
+                    required
+                    fullWidth
+                  />
+                </Box>
+                <Box
+                 mt={2} 
+                >
+                  <TextField
+                    id="password"
+                    inputRef={register}
+                    name="password"
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    required
+                    fullWidth
+                  />
+                </Box>
+              </Box>
 
-              <TextField
-                id="password"
-                inputRef={register}
-                name="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                required
-              />
               <Box my={2}>
                 <Button
                   type="submit"
