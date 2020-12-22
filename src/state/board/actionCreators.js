@@ -56,20 +56,40 @@ export const getBoard = (boardId) => dispatch => {
     });
 }
 
+export const updateBoard = (boardId) => dispatch => { 
+    dispatch({ type: types.REQUEST_START });
+    axiosWithAuth()
+    .patch(`${boardUrl}user_boards/${boardId}`)
+    .then(res => { 
+        dispatch({ 
+
+            type: types.UPDATE_BOARD_SUCCESS,
+            payload: res.data
+        })
+    })
+    .catch(error => { 
+        dispatch({
+
+            type: types.UPDATE_BOARD_FAILURE,
+            payload: error.message
+        })
+    })
+}
+
 export const createGroup = (boardId, newGroupData) => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()
-    .put(`${boardUrl}${boardId}`, newGroupData)
+    .post(`${boardUrl}${boardId}/groups`, newGroupData)
     .then(res => { 
         dispatch({ 
-            type: types.CREATE_BOARD_SUCCESS,
+            type: types.CREATE_GROUP_SUCCESS,
             payload: res.data
         })
     })
     .catch(error => {
         dispatch({
 
-            type: types.CREATE_BOARD_FAILURE,
+            type: types.CREATE_GROUP_FAILURE,
             payload: error.message
         });
     });
