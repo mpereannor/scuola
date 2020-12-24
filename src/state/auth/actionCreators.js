@@ -33,7 +33,7 @@ export const login = credentials => dispatch => {
     .then(res => { 
         Cookies.set('token', res.data);
         Cookies.set('userId', res.data._id);
-        history.push('/onboard/');
+        history.push('/app/dashboard');
         dispatch({ 
             type: types.LOGIN_SUCCESS, payload: res.data
         })
@@ -44,9 +44,9 @@ export const login = credentials => dispatch => {
     })
 }
 
-export const logout = () => { 
+export const logout = () => {
     Cookies.remove();
-    history.push('/onboard/');
+    history.push('/login');
     return{ type: types.LOGOUT};
 } 
 

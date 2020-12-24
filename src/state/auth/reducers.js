@@ -75,6 +75,8 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
         case types.LOGOUT:
             return {
                 ...state, 
+                user_id: '',
+                isLoggedIn: false,
                 error: action.payload
             }
 
