@@ -20,6 +20,15 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": { 
+            borderRadius : "2px",
+            borderWidth: "0.15em"
+        },
+        "&.Mui-focused fieldset" : { 
+            border: "0.2em solid #011628"
+        }
+    },
   },
 }));
 
@@ -39,7 +48,12 @@ const Login = (props) => {
         <Container maxWidth="sm">
           <div>
             <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-              <Box mb={4}>
+              <Box 
+              mb={4}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              >
                 <Typography color="textPrimary" variant="h2">
                   Sign in
                 </Typography>
