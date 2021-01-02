@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Container,
+  Grid,
   Link,
   TextField,
   Typography,
@@ -20,7 +21,16 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
-  },
+    "& .MuiOutlinedInput-root": {
+        "& fieldset": { 
+            borderRadius : "2px",
+            borderWidth: "0.15em"
+        },
+        "&.Mui-focused fieldset" : { 
+            border: "0.2em solid #011628"
+        }
+    },
+  }
 }));
 
 const Register = (props) => {
@@ -38,12 +48,17 @@ const Register = (props) => {
       >
         <Container maxWidth="sm">
           <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-            <Box mb={3}>
+            <Box
+             mb={3}
+             display="flex"
+             flexDirection="column"
+             alignItems="center"
+             >
               <Typography color="textPrimary" variant="h2">
-                Create new account
+                Create your new account
               </Typography>
               <Typography color="textSecondary" gutterBottom variant="body2">
-                Use your email to create new account
+                Use your email to create a new account
               </Typography>
             </Box>
             <TextField
@@ -78,26 +93,31 @@ const Register = (props) => {
               fullWidth
               margin="normal"
             />
+               
+                <TextField
+                id="password"
+                inputRef={register}
+                name="password"
+                label="Password"
+                type="password"
+                variant="outlined"
+                required
+                fullWidth
+                margin="normal"
+                />
 
-            <TextField
-              id="password"
-              inputRef={register}
-              name="password"
-              label="Password"
-              type="password"
-              variant="outlined"
-              required
-            />
-
-            <TextField
-              id="passwordConfirmation"
-              inputRef={register}
-              name="passwordConfirmation"
-              label="Confirm Password"
-              type="password"
-              variant="outlined"
-              required
-            />
+               
+                    <TextField
+                    id="passwordConfirmation"
+                    inputRef={register}
+                    name="passwordConfirmation"
+                    label="Confirm Password"
+                    type="password"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    margin="normal"
+                />
             <Box my={2}>
               <Button
                 type="submit"
@@ -110,7 +130,7 @@ const Register = (props) => {
               </Button>
             </Box>
             <Typography color="textSecondary" variant="body1">
-              Have an account?{" "}
+              Do you already have an account?{" "}
               <Link component={RouterLink} to="/login" variant="h6">
                 Sign in
               </Link>
