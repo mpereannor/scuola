@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { getBoard } from "../../state/board";
+import { getBoard, createGroup } from "../../state/board";
 import PropTypes from "prop-types";
 import Group from "./Group";
 import clsx from "clsx";
@@ -11,8 +11,10 @@ import {
   Card,
   CardContent,
   Grid,
+  Input,
   Typography,
   makeStyles,
+  CircularProgress
 } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 const useStyles = makeStyles(() => ({
@@ -24,7 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const BoardSingle = (props) => {
-  const { className, displaySingleBoard, getBoard } = props;
+  const { className, displaySingleBoard, getBoard, createGroup } = props;
   const { name, description, groups } = displaySingleBoard;
   const { boardId } = useParams();
 
@@ -34,16 +36,29 @@ const BoardSingle = (props) => {
 
   const classes = useStyles();
 
+  const handleSubmit = event => { 
+      event.preventDefault();
+      createGroup(boardId, "New Group")
+  }
+
+
+
   return (
     <Card className={clsx(classes.root, className)}>
       <CardContent>
         <Box>
-          <Grid item xs={6} key={displaySingleBoard.id}>
-            <Typography color="textPrimary" gutterBottom variant="h2">
-              {name}
+          <Grid item xs={6} key={displaySingleBoard.id}
+          >    
+            <Typography
+                  color="textPrimary"
+                  gutterBottom 
+                  variant="h2"
+                  > 
+                  {name}
             </Typography>
-
-            <Typography color="textPrimary" gutterBottom variant="h5">
+            <Typography color="textPrimary" 
+            gutterBottom 
+             variant="h5">
               {description}
             </Typography>
           </Grid>
@@ -56,18 +71,23 @@ const BoardSingle = (props) => {
                 color="primary"
                 size="small"
               >
-                New Item
+                New Issue
               </Button>
             </Grid>
             <Grid item xs={3}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="small"
-              >
-                New Group of Items
-              </Button>
+                <form
+                    onSubmit={handleSubmit}
+                >
+
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                >
+                    New Group of Issues
+                </Button>
+                </form>
             </Grid>
             <Grid item xs={3}>
               <AccountCircleIcon />
@@ -84,7 +104,8 @@ const BoardSingle = (props) => {
               ? groups.map((group) => (
                   <Group key={group._id} groupDisplay={group} />
                 ))
-              : "Loading..."}
+              :<CircularProgress
+              color="secondary"/>}
           </Box>
         </Box>
       </CardContent>
@@ -99,8 +120,11 @@ BoardSingle.propTypes = {
 export default connect(
   (state) => {
     return {
-      displaySingleBoard: state.userBoard.displaySingleBoard,
+      displaySingleBoard: state.userBoard.displaySingleBoard
     };
   },
-  { getBoard }
+  { 
+      getBoard, 
+      createGroup
+ }
 )(BoardSingle);
