@@ -8,12 +8,12 @@ import {
 import {
   Container,
   Box,
-  makeStyles
+  makeStyles,
+  CircularProgress
 } from '@material-ui/core';
 
 import BoardList from './BoardList';
-import { Transition } from '../Loader';
-
+import { Transition } from '../Loader'
 const useStyles = makeStyles(() => ({
   root: {},
   avatar: {
@@ -41,18 +41,30 @@ const BoardView = props => {
         <Container
         className={clsx(classes.root, className)}
         >   
-            <Box>
-                {(isFetching && displayBoard.length === 0) ? <Transition/> : null}
-            </Box>
-            {displayBoard.map((display) => (
-                <BoardList
-                key={display.id}
-                display={display} 
-                >
+                {displayBoard && displayBoard.length > 0
+                 ? 
+                 displayBoard.map((display) => (
+                     <BoardList
+                     key={display.id}
+                     display={display} 
+                     />
+                 ))
+                 :
+                 <div
+                    style={{
+                        "margin" : "auto",
+                        "width" : " 50%",
+                    }}
+                 >
+
+                 <Transition/>
+                 </div>
+
+           
+                 }
                 
-                </BoardList>  
                 
-            ))} 
+            {/* ))}  */}
         </Container>
       );
 };
