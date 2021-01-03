@@ -22,50 +22,56 @@ import {
     ShoppingBag as ShoppingBagIcon,
     User as UserIcon,
     UserPlus as UserPlusIcon,
-    Users as UsersIcon
+    Users as UsersIcon,
+    Power as PowerIcon
   } from 'react-feather';
   import NavItem from './NavItem';
   
   const items = [
     {
-      href: '/dashboard',
+      href: '/app/dashboard',
       icon: BarChartIcon,
       title: 'Dashboard'
     },
     {
-      href: '/account',
-      icon: UsersIcon,
+        href: '/app/reports',
+        icon: ShoppingBagIcon,
+        title: 'Reports'
+    },
+    {
+        href: '/app/groups',
+        icon: UserIcon,
+        title: 'Groups'
+    },
+    {
+        href: '/app/settings',
+        icon: SettingsIcon,
+        title: 'Settings'
+    },
+    {
+        href: '/login',
+        icon: LockIcon,
+        title: 'Login'
+    },
+    {
+        href: '/register',
+        icon: UserPlusIcon,
+        title: 'Register'
+    },
+    {
+      href: '/app/account',
+      icon: UserIcon,
       title: 'User'
     },
     {
-      href: '/reports',
-      icon: ShoppingBagIcon,
-      title: 'Reports'
+        href: '/404',
+        icon: AlertCircleIcon,
+        title: 'Error'
     },
     {
-      href: '/groups',
-      icon: UserIcon,
-      title: 'Groups'
-    },
-    {
-      href: '/settings',
-      icon: SettingsIcon,
-      title: 'Settings'
-    },
-    {
-      href: '/login',
-      icon: LockIcon,
-      title: 'Login'
-    },
-    {
-      href: '/register',
-      icon: UserPlusIcon,
-      title: 'Register'
-    },
-    {
-      href: '/404',
-      icon: AlertCircleIcon,
-      title: 'Error'
+      href: '/logout',
+      icon: PowerIcon,
+      title: 'Logout'
     }
   ];
 
