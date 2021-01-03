@@ -52,11 +52,24 @@ export const boardReducer = (state = initialBoard, action) => {
                 isFetching: false
             };
         
+        case types.UPDATE_BOARD_SUCCESS:
+            return { 
+                ...state,
+                board: action.payload,
+                isFetching: false,
+            };
+        
+        case types.UPDATE_BOARD_FAILURE:
+            return { 
+                ...state,
+                error: action.payload,
+                isFetching: false
+            };
 
         case types.CREATE_GROUP_SUCCESS:
             return { 
                 ...state,
-                groups: state.board.group.push(action.payload),
+                groups: state.board.groups.push(action.payload),
                 isFetching: false
             };
         

@@ -79,7 +79,7 @@ export const updateBoard = (boardId) => dispatch => {
 export const createGroup = (boardId, newGroupData) => dispatch => { 
     dispatch({ type: types.REQUEST_START });
     axiosWithAuth()
-    .post(`${boardUrl}${boardId}/groups`, newGroupData)
+    .post(`${boardUrl}user_boards/${boardId}`, newGroupData)
     .then(res => { 
         dispatch({ 
             type: types.CREATE_GROUP_SUCCESS,
@@ -94,5 +94,6 @@ export const createGroup = (boardId, newGroupData) => dispatch => {
         });
     });
 }
+
 
 
