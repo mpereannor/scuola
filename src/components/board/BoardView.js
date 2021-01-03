@@ -7,10 +7,12 @@ import {
 } from '../../state/board';
 import {
   Container,
+  Box,
   makeStyles
 } from '@material-ui/core';
 
-import BoardList from './BoardList'
+import BoardList from './BoardList';
+import { Transition } from '../Loader';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -22,7 +24,8 @@ const useStyles = makeStyles(() => ({
 
 const BoardView = props => { 
     const { 
-        className, 
+        className,
+        isFetching, 
         displayBoard,
         getBoards, 
         
@@ -37,12 +40,18 @@ const BoardView = props => {
     return (
         <Container
         className={clsx(classes.root, className)}
-        >
+        >   
+            <Box>
+                {(isFetching && displayBoard.length === 0) ? <Transition/> : null}
+            </Box>
             {displayBoard.map((display) => (
                 <BoardList
-                    key={display.id}
-                    display={display}   
-                />
+                key={display.id}
+                display={display} 
+                >
+                
+                </BoardList>  
+                
             ))} 
         </Container>
       );

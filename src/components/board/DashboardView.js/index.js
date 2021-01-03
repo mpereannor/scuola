@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import Page from '../../Page';
 import BoardDetails from '../BoardDetails';
-import Board from '../Board';
+import BoardView from '../BoardView';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +46,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-              <Board/>
+              <BoardView/>
             </Grid>
           </Grid>
         </Container>
