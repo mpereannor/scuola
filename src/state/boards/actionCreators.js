@@ -22,13 +22,13 @@ export const createBoard = boardData => dispatch => {
 
 
 export const getBoards = () => dispatch => { 
-    dispatch({ type: types.REQUEST_START });
+    dispatch({ type: types.REQUEST_START});
     axiosWithAuth()
     .get(`${boardUrl}user_boards`)
     .then(res => { 
         dispatch({ 
             type: types.DISPLAY_BOARDS_SUCCESS,
-            payload: res.data
+            payload: res.data.boards
         })
     })
     .catch(error => { 

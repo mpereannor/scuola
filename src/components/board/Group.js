@@ -1,15 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import * as dayjs from "dayjs";
 import clsx from "clsx";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
   Box,
-  Button,
   Card,
-  CardContent,
   CardHeader,
   Chip,
   Divider,
@@ -20,10 +17,8 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
-  Typography,
   makeStyles,
 } from "@material-ui/core";
-import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -67,7 +62,7 @@ const Group = (props) => {
             </TableHead>
             <TableBody>
               {issue.map((i) => (
-                <TableRow hover key={i.id}>
+                <TableRow hover key={i._id}>
                   <TableCell>{i.summary}</TableCell>
                   <TableCell>
                     {dayjs(i.createdAt).format("DD/MM/YYYY")}

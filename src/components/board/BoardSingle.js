@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { getBoard, createGroup } from "../../state/board";
+import { getBoard, createGroup } from "../../state/boards";
 import PropTypes from "prop-types";
 import Group from "./Group";
 import clsx from "clsx";
@@ -11,7 +11,6 @@ import {
   Card,
   CardContent,
   Grid,
-  Input,
   Typography,
   makeStyles,
   CircularProgress

@@ -5,9 +5,9 @@ import Cookies from 'js-cookie';
 const PrivateRoute = ({ component:Component, ...rest }) => (
     <Route
         { ...rest}
-        render={props => Cookies.get('token')
+        render={props => Cookies.get('sessionId')
         ? (<Component { ...props}/>)
-        : (<Navigate to='/login'/>)
+        : (<Navigate to='/app/login'/>)
     }
     />
 );

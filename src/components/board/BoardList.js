@@ -22,8 +22,10 @@ const BoardList = (props) => {
   const { _id, name, description, board_type } = display;
 
   return (
-    <Card className={clsx(classes.root, className)}>
-      <CardContent>
+    <Card className={clsx(classes.root, className)}
+        style={{"marginBottom" : "1em"}}
+    >
+      <CardContent my={2}>
           <Link to={`/app/board/${_id}`}>
         <Box>
           <Grid item xs={6}>

@@ -18,7 +18,8 @@ const routes = [
     children: [
       { path: "account", element: <Account /> },
       { path: "dashboard", element: <Dashboard /> },
-      { path: "users", element: <Users /> },
+      { path: "board/:boardId", element: <BoardSingle /> },
+      { path: "account", element: <Users /> },
       { path: "*", element: <Navigate to="/404" /> },
     ],
   },
@@ -28,7 +29,6 @@ const routes = [
     children: [
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      { path: "board/:boardId", element: <BoardSingle /> },
       { path: "onboard", element: <Onboard /> },
       { path: "404", element: <NotFound /> },
       { path: "/", element: <Navigate to="/app/dashboard" /> },

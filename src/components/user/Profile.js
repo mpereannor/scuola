@@ -29,18 +29,13 @@ const Profile = props => {
         className,
         getUser,
         user,
-        userProfile,
-        bio,
-        image,
-        age,
-        gender, 
-        location,
+        userProfile
     } = props;
     
     const classes = useStyles();
     
     const { username, fullname, email, profile } = user;
-    // const { location, age, image } = userProfile;
+    const { location, age, image, bio, gender } = userProfile;
 
     const { userId }  = useParams();
     useEffect(() => { 
@@ -120,11 +115,6 @@ const mapStateToProps = state => {
     return { 
         user: state.allUsers.user,
         userProfile: state.profile.userProfile,
-        bio: state.profile.bio,
-        location: state.profile.location,
-        image: state.profile.image,
-        age: state.profile.age,
-        gender: state.profile.gender
     }
 }
 

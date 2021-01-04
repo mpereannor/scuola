@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { 
     getBoards
-} from '../../state/board';
+} from '../../state/boards';
 import {
   Container,
-  Box,
   makeStyles,
-  CircularProgress
 } from '@material-ui/core';
 
 import BoardList from './BoardList';
@@ -25,11 +23,11 @@ const useStyles = makeStyles(() => ({
 const BoardView = props => { 
     const { 
         className,
-        isFetching, 
         displayBoard,
         getBoards, 
         
     } = props;
+
 
     const classes = useStyles();
     
@@ -40,31 +38,18 @@ const BoardView = props => {
     return (
         <Container
         className={clsx(classes.root, className)}
-        >   
-                {displayBoard && displayBoard.length > 0
-                 ? 
-                 displayBoard.map((display) => (
-                     <BoardList
-                     key={display.id}
-                     display={display} 
-                     />
-                 ))
-                 :
-                 <div
-                    style={{
-                        "margin" : "auto",
-                        "width" : " 50%",
-                    }}
-                 >
-
-                 <Transition/>
-                 </div>
-
-           
-                 }
-                
-                
-            {/* ))}  */}
+        >                   
+        {displayBoard && displayBoard.length > 0  ? 
+        displayBoard.map((display) => (
+                <BoardList
+                key={display._id}
+                display={display} 
+                />
+            ))
+            : 
+            <Transition/>
+        }
+        
         </Container>
       );
 };

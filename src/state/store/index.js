@@ -1,5 +1,5 @@
 import * as auth from '../auth';
-import * as board from '../board';
+import * as boards from '../boards';
 import * as users from '../users';
 
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
@@ -9,7 +9,7 @@ const reducerCollection = combineReducers({
     onboard: auth.onboardingReducer,
     allUsers: users.userViewReducer,
     profile: users.profileReducer,
-    userBoard: board.boardReducer,
+    userBoard: boards.boardReducer,
 })
 
 const store = createStore(

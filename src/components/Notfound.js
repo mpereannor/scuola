@@ -6,7 +6,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from './Page';
-import { notFoundLogo } from '../assets/images'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,13 +52,6 @@ const NotFound = () => {
             You either tried some shady route or you came here by mistake.
             Whichever it is, try using the navigation
           </Typography>
-          <Box textAlign="center">
-            <img
-              alt="Under development"
-              className={classes.image}
-              src={ notFoundLogo }
-            />
-          </Box>
         </Container>
       </Box>
     </Page>

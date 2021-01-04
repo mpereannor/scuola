@@ -128,7 +128,7 @@ import {
               className={classes.avatar}
               component={Link}
               src={userProfile.image}
-              to="/users"
+              to="/app/account"
             />
             <Typography
               className={classes.name}

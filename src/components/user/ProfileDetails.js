@@ -27,7 +27,7 @@ const ProfileDetails = props => {
         createUserProfile
     } = props;
 
-    const classes = useStyles();
+const classes = useStyles();
 
 const [profileData, setProfileData] = useState({
     age: 0,
