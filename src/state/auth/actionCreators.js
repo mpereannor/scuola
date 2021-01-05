@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import { axiosWithAuth } from '../../utils/axios';
+import { Axios, axiosWithAuth } from '../../utils/axios';
 import history from '../../utils/history';
 import Cookies from 'js-cookie';
 
@@ -8,13 +8,13 @@ const loginUrl = 'api/auth/login';
 
 export const register = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START });
-    axiosWithAuth()
+    Axios()
     .post(registerUrl, credentials)
     .then(res => {
         Cookies.set('token', res.data.token);
         Cookies.set('userId', res.data.id);
         Cookies.set('position', res.data.position)
-        history.push(`/onboard/`);
+        history.push(`/onboard`);
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });

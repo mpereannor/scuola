@@ -1,6 +1,8 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
-const baseURL = 'http://localhost:7000/';
+// const baseURL = 'http://localhost:7000/';
+const baseURL = 'http://ec2-18-134-244-164.eu-west-2.compute.amazonaws.com:7000/';
+
 const origin = 'http://localhost:3000';
 
 export const Axios = () => {
@@ -8,7 +10,6 @@ export const Axios = () => {
     headers: {
         Accept: 'application/json',
       "Content-Type": "application/json",
-      "Origin" : origin
     },
     baseURL,
   });
