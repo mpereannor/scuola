@@ -47,7 +47,14 @@ const BoardView = props => {
                 />
             ))
             : 
-            <Transition/>
+            <div
+                style={{
+                    "width": "50%",
+                    "margin" : "auto"
+                }}
+            >
+                <Transition/>
+            </div>
         }
         
         </Container>
