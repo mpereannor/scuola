@@ -28,7 +28,7 @@ export const register = credentials => dispatch => {
 
 export const login = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START});
-    Axios()
+    axiosWithAuth()
     .post(loginUrl, credentials)
     .then(res => { 
         Cookies.set('token', res.data);
