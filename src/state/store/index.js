@@ -10,16 +10,20 @@ const reducerCollection = combineReducers({
     allUsers: users.userViewReducer,
     profile: users.profileReducer,
     userBoard: boards.boardReducer,
-})
+});
+
+const devTooling = process.env.NODE_ENV === "production" 
+?   compose( applyMiddleware(thunk)) 
+:
+compose(applyMiddleware(thunk, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() ));
 
 const store = createStore(
     reducerCollection,
     {},
     compose(
-        applyMiddleware(
-            thunk
-            ),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        devTooling
+        // applyMiddleware(thunk),
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
