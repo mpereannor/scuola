@@ -11,10 +11,11 @@ export const register = credentials => dispatch => {
     Axios()
     .post(registerUrl, credentials)
     .then(res => {
-        Cookies.set('token', res.data.token);
-        Cookies.set('userId', res.data.id);
+        Cookies.set('token', res.data);
+        Cookies.set('userId', res.data._id);
         Cookies.set('position', res.data.position)
-        history.push(`/onboard`);
+        // history.push(`/onboard`);
+        history.push(`/app/dashboard`);
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });
@@ -31,8 +32,8 @@ export const login = credentials => dispatch => {
     axiosWithAuth()
     .post(loginUrl, credentials)
     .then(res => { 
-        Cookies.set('token', res.data);
-        Cookies.set('userId', res.data._id);
+        // Cookies.set('token', res.data);
+        // Cookies.set('userId', res.data._id);
         history.push('/app/dashboard');
         dispatch({ 
             type: types.LOGIN_SUCCESS, payload: res.data
