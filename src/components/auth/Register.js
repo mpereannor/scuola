@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 const Register = (props) => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => props.register(data);
+  const onSubmit = (data) => props.register(data, props.history);
+
 
   return (
     <Page className={classes.root} title="Register">
