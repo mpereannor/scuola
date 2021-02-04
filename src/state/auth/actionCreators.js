@@ -11,9 +11,10 @@ export const register = credentials => dispatch => {
     Axios()
     .post(registerUrl, credentials)
     .then(res => {
-        Cookies.set('token', res.data);
-        Cookies.set('userId', res.data._id);
-        Cookies.set('position', res.data.position)
+        // Cookies.set('token', res.data);
+        // Cookies.set('userId', res.data._id);
+        // Cookies.set('position', res.data.position)
+        console.log('newday', res)
         // history.push(`/onboard`);
         history.push(`/app/dashboard`);
         dispatch({ 
