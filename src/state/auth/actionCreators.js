@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
 
-export const register = (credentials, history) => dispatch => { 
+export const register = (credentials) => dispatch => { 
     
     dispatch({ type: types.REQUEST_START });
     Axios()
