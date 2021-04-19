@@ -60,7 +60,7 @@ const TopBar = ({
           </IconButton>
           <IconButton color="inherit">
             <PowerSettingsNewIcon
-            onClick={ handleClick } />
+            onClick={handleClick} />
           </IconButton>
         </Hidden>
         <Hidden lgUp>

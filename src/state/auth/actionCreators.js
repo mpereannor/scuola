@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import { Axios, axiosWithAuth } from '../../utils/axios';
 import history from '../../utils/history';
-import Cookies from 'js-cookie';
+
 
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
@@ -17,10 +17,12 @@ export const register = (credentials) => dispatch => {
         // Cookies.set('position', res.data.position)
         console.log('newday', res)
         // history.push(`/onboard`);
-        history.push(`/app/dashboard`);
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });
+        history.push(`/login`);
+        // localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('id', res.data._id)
     })
     .catch(error => { 
         dispatch({ 
@@ -31,15 +33,14 @@ export const register = (credentials) => dispatch => {
 
 export const login = credentials => dispatch => { 
     dispatch({ type: types.REQUEST_START});
-    axiosWithAuth()
+    Axios()
     .post(loginUrl, credentials)
     .then(res => { 
-        // Cookies.set('token', res.data);
-        // Cookies.set('userId', res.data._id);
-        history.push('/app/dashboard');
         dispatch({ 
             type: types.LOGIN_SUCCESS, payload: res.data
-        })
+        });
+        localStorage.setItem('token', res.data.token);
+        history.push('/app/dashboard');
     })
     .catch(error => { 
         dispatch({ 
@@ -48,14 +49,14 @@ export const login = credentials => dispatch => {
 }
 
 export const logout = () => {
-    Cookies.remove();
+    localStorage.clear()
     history.push('/login');
     return{ type: types.LOGOUT};
 } 
 
 export const updatePosition = (id, positionData)=> dispatch => { 
     dispatch({ type: types.REQUEST_START });
-    id = Cookies.get('userId')
+    // id = Cookies.get('userId')
     axiosWithAuth()
     .patch(`api/users/${id}`, positionData)
     .then(res => { 

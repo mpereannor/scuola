@@ -21,9 +21,9 @@ const store = createStore(
     reducerCollection,
     {},
     compose(
-        devTooling
-        // applyMiddleware(thunk),
-        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        // devTooling,
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 

@@ -36,7 +36,6 @@ const Login = (props) => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => props.login(data);
-  console.log("lights", props);
   return (
     <Page className={classes.root} title="Login">
       <Box
@@ -71,6 +70,18 @@ const Login = (props) => {
                 display="flex"
                 flexDirection="column"
               >
+                <Box
+                >
+                  <TextField
+                    id="username"
+                    inputRef={register}
+                    name="username"
+                    label="Username"
+                    variant="outlined"
+                    required
+                    fullWidth
+                  />
+                </Box>
                 <Box
                 >
                   <TextField
