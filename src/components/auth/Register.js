@@ -1,5 +1,6 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
 import { connect } from "react-redux";
 import { register } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
@@ -21,20 +22,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
     "& .MuiOutlinedInput-root": {
-        "& fieldset": { 
-            borderRadius : "2px",
-            borderWidth: "0.15em"
-        },
-        "&.Mui-focused fieldset" : { 
-            border: "0.2em solid #011628"
-        }
+      "& fieldset": {
+        borderRadius: "2px",
+        borderWidth: "0.15em"
+      },
+      "&.Mui-focused fieldset": {
+        border: "0.2em solid #011628"
+      }
     },
   }
 }));
 
 const Register = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => props.register(data);
 
 
@@ -49,11 +50,11 @@ const Register = (props) => {
         <Container maxWidth="sm">
           <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
             <Box
-             mb={3}
-             display="flex"
-             flexDirection="column"
-             alignItems="center"
-             >
+              mb={3}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
               <Typography color="textPrimary" variant="h2">
                 Create your new account
               </Typography>
@@ -93,31 +94,40 @@ const Register = (props) => {
               fullWidth
               margin="normal"
             />
-               
-                <TextField
-                id="password"
-                inputRef={register}
-                name="password"
-                label="Password"
-                type="password"
-                variant="outlined"
-                required
-                fullWidth
-                margin="normal"
-                />
 
-               
-                    <TextField
-                    id="passwordConfirmation"
-                    inputRef={register}
-                    name="passwordConfirmation"
-                    label="Confirm Password"
-                    type="password"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    margin="normal"
-                />
+
+            <TextField
+              id="password"
+              inputRef={register}
+              name="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              required
+              fullWidth
+              margin="normal"
+            />
+
+            <Box>
+              <label>Position</label>
+              <Controller
+                  name="Position"
+                render={({ field }) => (
+                  <Select {...field}
+                  options={[
+                    {value:'admin', label:'Admin'},
+                    {value:'tutor', label:'Tutor'},
+                    {value:'student', label:'Student'},
+                    {value:'guest', label:'Guest'}
+                  ]}
+                  />
+                )}
+                control={control}
+                defaultValue=""
+
+              />
+            </Box>
+
             <Box my={2}>
               <Button
                 type="submit"

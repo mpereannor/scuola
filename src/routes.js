@@ -4,7 +4,6 @@ import DashboardLayout from "./components/layouts/DashboardLayout";
 import MainLayout from "./components/layouts/MainLayout";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Onboard from "./components/auth/Onboard";
 import Account from "./components/user";
 import Users from "./components/user/Users";
 import Dashboard from "./components/board/DashboardView.js";
@@ -29,7 +28,6 @@ const routes = [
     children: [
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      { path: "onboard", element: <Onboard /> },
       { path: "404", element: <NotFound /> },
       { path: "/", element: <Navigate to="/app/dashboard" /> },
       { path: "*", element: <Navigate to="/404" /> },

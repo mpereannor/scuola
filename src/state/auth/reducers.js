@@ -1,5 +1,4 @@
 import * as types from "./actionTypes";
-import Cookies from "js-cookie";
 
 const initialOnboardingState = {
   user_id: "",
@@ -83,7 +82,6 @@ export const onboardingReducer = (state = initialOnboardingState, action) => {
         email: "",
         position: "",
         token: "",
-        // error: action.payload
       };
 
     default:

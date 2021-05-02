@@ -12,17 +12,13 @@ export const register = (credentials) => dispatch => {
     Axios()
     .post(registerUrl, credentials)
     .then(res => {
-        // Cookies.set('token', res.data);
-        // Cookies.set('userId', res.data._id);
-        // Cookies.set('position', res.data.position)
+      
         console.log('newday', res)
-        // history.push(`/onboard`);
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });
         history.push(`/login`);
-        // localStorage.setItem('token', res.data.token);
-        // localStorage.setItem('id', res.data._id)
+      
     })
     .catch(error => { 
         dispatch({ 
@@ -56,7 +52,6 @@ export const logout = () => {
 
 export const updatePosition = (id, positionData)=> dispatch => { 
     dispatch({ type: types.REQUEST_START });
-    // id = Cookies.get('userId')
     axiosWithAuth()
     .patch(`api/users/${id}`, positionData)
     .then(res => { 
