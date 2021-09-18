@@ -43,7 +43,7 @@ const BoardDetails = (props) => {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => props.createBoard(data);
 
   return (

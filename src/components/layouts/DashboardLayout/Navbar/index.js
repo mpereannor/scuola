@@ -22,7 +22,6 @@ import {
     ShoppingBag as ShoppingBagIcon,
     User as UserIcon,
     UserPlus as UserPlusIcon,
-    Users as UsersIcon,
     Power as PowerIcon
   } from 'react-feather';
   import NavItem from './NavItem';

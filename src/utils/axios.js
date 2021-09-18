@@ -1,9 +1,6 @@
 import axios from "axios";
-const baseURL = 'http://localhost:7000/';
-// const baseURL = 'http://ec2-35-178-134-215.eu-west-2.compute.amazonaws.com';
-// const baseURL = 'https://scuola-server.herokuapp.com';
+const baseURL = process.env.REACT_APP_BASE_URL || 'http://localhost:7000/';
 
-const origin = 'http://localhost:3000';
 
 export const Axios = () => {
   return axios.create({

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => props.login(data);
   return (
     <Page className={classes.root} title="Login">
@@ -71,6 +71,7 @@ const Login = (props) => {
                 flexDirection="column"
               >
                 <Box
+                
                 >
                   <TextField
                     id="username"
@@ -83,6 +84,7 @@ const Login = (props) => {
                   />
                 </Box>
                 <Box
+                mt={2}
                 >
                   <TextField
                     id="email"

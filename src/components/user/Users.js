@@ -9,6 +9,7 @@ const Users = ({
     useEffect(() => {
         getUsers();
       
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return(
         <div>
@@ -24,7 +25,7 @@ const Users = ({
 
 
 const UserData = ({ user }) => { 
-    const { username, position, id } = user
+    const { username, position } = user
     return(
         <div>
             <p> {username} is a <span>{position}</span></p>

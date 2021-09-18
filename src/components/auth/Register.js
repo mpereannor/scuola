@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, control, errors } = useForm();
+  const { register, handleSubmit  } = useForm();
   const onSubmit = (data) => props.register(data);
 
   return (

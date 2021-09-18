@@ -34,16 +34,15 @@ const Profile = props => {
     
     const classes = useStyles();
     
-    const { username, fullname, email, profile } = user;
+    const { username, email } = user;
     const { location, age, image, bio, gender } = userProfile;
 
     const { userId }  = useParams();
     useEffect(() => { 
         // displayUserProfile(userId);
         getUser(userId);
-  }, [
-       userId
-    ])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId])
 
   return (
     <Card

@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
 
 const Group = (props) => {
   const { className, groupDisplay } = props;
-  const { title, issue, createdAt } = groupDisplay;
+  const { title, issue } = groupDisplay;
   const classes = useStyles();
 
   return (
