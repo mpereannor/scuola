@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { 
     getUser,
-    displayUserProfile
+    // displayUserProfile
 } from '../../state/users';
 import {
   Avatar,
@@ -39,7 +39,7 @@ const Profile = props => {
 
     const { userId }  = useParams();
     useEffect(() => { 
-        displayUserProfile(userId);
+        // displayUserProfile(userId);
         getUser(userId);
   }, [
        userId
@@ -120,7 +120,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps,
      { 
-    getUser,
-    displayUserProfile
+    getUser
+    // displayUserProfile
 })(Profile);
 

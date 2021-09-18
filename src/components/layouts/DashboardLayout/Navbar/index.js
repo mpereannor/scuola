@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { createUserProfile, displayUserProfile } from '../../../../state/users'
+import { createUserProfile } from '../../../../state/users'
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { 
@@ -95,7 +95,7 @@ import {
       onMobileClose,
       openMobile,
       userProfile,
-      displayUserProfile
+      // displayUserProfile
      }) => {
     const classes = useStyles();
     const location = useLocation();
@@ -108,9 +108,9 @@ import {
     }, [location.pathname]);
 
 
-    useEffect(() => { 
-        displayUserProfile();
-    }, [])
+    // useEffect(() => { 
+    //     // displayUserProfile();
+    // }, [])
 
     const content = (
         <Box
@@ -205,5 +205,5 @@ NavBar.propTypes = {
     openMobile: false
   };
   
-  export default connect((state) => state.profile, { createUserProfile, displayUserProfile })(NavBar);
+  export default connect((state) => state.profile, { createUserProfile })(NavBar);
   

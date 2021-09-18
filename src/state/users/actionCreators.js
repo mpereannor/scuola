@@ -24,9 +24,9 @@ export const getUsers = () => dispatch => {
 
 export const getUser = id => dispatch => { 
     dispatch({ type: types.REQUEST_START });
-    id = Cookies.get('userId')
+    const userId = localStorage.getItem('id')
     axiosWithAuth()
-    .get(`${userUrl}${id}`)
+    .get(`${userUrl}${userId}`)
     .then(res => { 
         dispatch({ 
             type: types.GET_USER_SUCCESS,
@@ -62,21 +62,21 @@ export const createUserProfile = (userId, userProfileData) => dispatch => {
     })
 };
 
-export const displayUserProfile = userId => dispatch => { 
-    dispatch({ type: types.REQUEST_START });
-    userId = Cookies.get('userId');
-    axiosWithAuth()
-    .get(`${userUrl}${userId}/profile`)
-    .then(res => { 
-        dispatch({ 
-            type: types.DISPLAY_USER_PROFILE_SUCCESS,
-            payload: res.data
-        })
-    })
-    .catch(error => { 
-        dispatch({ 
-            type: types.DISPLAY_USER_PROFILE_FAILURE,
-            payload: error.message
-        });
-    });
-};
+// export const displayUserProfile = userId => dispatch => { 
+//     dispatch({ type: types.REQUEST_START });
+//     userId = Cookies.get('userId');
+//     axiosWithAuth()
+//     .get(`${userUrl}${userId}/profile`)
+//     .then(res => { 
+//         dispatch({ 
+//             type: types.DISPLAY_USER_PROFILE_SUCCESS,
+//             payload: res.data
+//         })
+//     })
+//     .catch(error => { 
+//         dispatch({ 
+//             type: types.DISPLAY_USER_PROFILE_FAILURE,
+//             payload: error.message
+//         });
+//     });
+// };

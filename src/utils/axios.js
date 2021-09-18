@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from 'js-cookie';
 const baseURL = 'http://localhost:7000/';
 // const baseURL = 'http://ec2-35-178-134-215.eu-west-2.compute.amazonaws.com';
 // const baseURL = 'https://scuola-server.herokuapp.com';
@@ -20,7 +19,6 @@ export const Axios = () => {
 export  function axiosWithAuth() {
     const token =
       localStorage.getItem('token');
-    //   || localStorage.getItem('tempuser');
     const axiosInstance = axios.create({
       baseURL,
       headers: {

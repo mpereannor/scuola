@@ -1,6 +1,5 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import Select from "react-select";
+import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { register } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
@@ -14,7 +13,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import Page from "../Page";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -24,20 +22,19 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderRadius: "2px",
-        borderWidth: "0.15em"
+        borderWidth: "0.15em",
       },
       "&.Mui-focused fieldset": {
-        border: "0.2em solid #011628"
-      }
+        border: "0.2em solid #011628",
+      },
     },
-  }
+  },
 }));
 
 const Register = (props) => {
   const classes = useStyles();
   const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => props.register(data);
-
 
   return (
     <Page className={classes.root} title="Register">
@@ -95,7 +92,6 @@ const Register = (props) => {
               margin="normal"
             />
 
-
             <TextField
               id="password"
               inputRef={register}
@@ -107,26 +103,6 @@ const Register = (props) => {
               fullWidth
               margin="normal"
             />
-
-            <Box>
-              <label>Position</label>
-              <Controller
-                  name="Position"
-                render={({ field }) => (
-                  <Select {...field}
-                  options={[
-                    {value:'admin', label:'Admin'},
-                    {value:'tutor', label:'Tutor'},
-                    {value:'student', label:'Student'},
-                    {value:'guest', label:'Guest'}
-                  ]}
-                  />
-                )}
-                control={control}
-                defaultValue=""
-
-              />
-            </Box>
 
             <Box my={2}>
               <Button

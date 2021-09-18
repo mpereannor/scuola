@@ -9,6 +9,7 @@ export const createBoard = boardData => dispatch => {
     axiosWithAuth()
     .post(boardUrl, boardData)
     .then(res => { 
+        console.log('newday', res)
         dispatch({ 
             type: types.CREATE_BOARD_SUCCESS, payload: res.data
         })
@@ -22,13 +23,16 @@ export const createBoard = boardData => dispatch => {
 
 
 export const getBoards = () => dispatch => { 
+    const userId = 
     dispatch({ type: types.REQUEST_START});
     axiosWithAuth()
-    .get(`${boardUrl}user_boards`)
+    .get(`${boardUrl}/${userId}`)
     .then(res => { 
+        console.log('res', res)
         dispatch({ 
             type: types.DISPLAY_BOARDS_SUCCESS,
-            payload: res.data.boards
+            payload: res.data
+
         })
     })
     .catch(error => { 

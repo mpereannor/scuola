@@ -16,7 +16,7 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: "account", element: <Account /> },
-      { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboard/:userId", element: <Dashboard /> },
       { path: "board/:boardId", element: <BoardSingle /> },
       { path: "account", element: <Users /> },
       { path: "*", element: <Navigate to="/404" /> },

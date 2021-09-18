@@ -13,10 +13,11 @@ export const register = (credentials) => dispatch => {
     .post(registerUrl, credentials)
     .then(res => {
       
-        console.log('newday', res)
         dispatch({ 
             type: types.REGISTER_SUCCESS, payload: res.data
         });
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('id', res.data.user.id)
         history.push(`/login`);
       
     })
@@ -36,7 +37,9 @@ export const login = credentials => dispatch => {
             type: types.LOGIN_SUCCESS, payload: res.data
         });
         localStorage.setItem('token', res.data.token);
-        history.push('/app/dashboard');
+        localStorage.setItem('id', res.data.user.id);
+        const userId = localStorage.getItem('id');
+        history.push(`/app/dashboard/${userId}`);
     })
     .catch(error => { 
         dispatch({ 
