@@ -61,7 +61,8 @@ const Register = (props) => {
             </Box>
             <TextField
               id="username"
-              inputRef={register}
+              // inputRef={register}
+              { ...register('username')}
               name="username"
               label="Username"
               variant="outlined"
@@ -69,10 +70,11 @@ const Register = (props) => {
               inputProps={{ maxLength: 20 }}
               fullWidth
               margin="normal"
-            />
+              />
             <TextField
               id="fullname"
-              inputRef={register}
+              // inputRef={register}
+              { ...register('fullname')}
               name="fullname"
               label="Fullname"
               variant="outlined"
@@ -80,21 +82,23 @@ const Register = (props) => {
               inputProps={{ maxLength: 50 }}
               fullWidth
               margin="normal"
-            />
+              />
             <TextField
               id="email"
-              inputRef={register}
+              // inputRef={register}
+              { ...register('email')}
               name="email"
               label="Email Address"
               variant="outlined"
               required
               fullWidth
               margin="normal"
-            />
+              />
 
             <TextField
               id="password"
-              inputRef={register}
+              // inputRef={register}
+              { ...register('password')}
               name="password"
               label="Password"
               type="password"
@@ -102,7 +106,7 @@ const Register = (props) => {
               required
               fullWidth
               margin="normal"
-            />
+              />
             { 
               errors.message
             }

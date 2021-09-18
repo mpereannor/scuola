@@ -75,7 +75,8 @@ const Login = (props) => {
                 >
                   <TextField
                     id="username"
-                    inputRef={register}
+                    // inputRef={register}
+                    { ...register('username')}
                     name="username"
                     label="Username"
                     variant="outlined"
@@ -88,7 +89,8 @@ const Login = (props) => {
                 >
                   <TextField
                     id="email"
-                    inputRef={register}
+                    { ...register('email')}
+                    // inputRef={register}
                     name="email"
                     label="Email Address"
                     variant="outlined"
@@ -101,7 +103,10 @@ const Login = (props) => {
                 >
                   <TextField
                     id="password"
-                    inputRef={register}
+                    // inputRef={register}
+              { ...register('password')}
+           
+
                     name="password"
                     label="Password"
                     type="password"
