@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit  } = useForm();
+  const { register, handleSubmit, errors  } = useForm();
   const onSubmit = (data) => props.register(data);
 
   return (
@@ -103,6 +103,9 @@ const Register = (props) => {
               fullWidth
               margin="normal"
             />
+            { 
+              errors.message
+            }
 
             <Box my={2}>
               <Button

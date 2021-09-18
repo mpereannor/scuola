@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => props.login(data);
   return (
     <Page className={classes.root} title="Login">
@@ -111,6 +111,9 @@ const Login = (props) => {
                   />
                 </Box>
               </Box>
+              {
+                errors.message
+              }
 
               <Box my={2}>
                 <Button
