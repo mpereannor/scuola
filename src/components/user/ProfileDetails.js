@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
+import React, { useState } from "react";
+import clsx from "clsx";
 import { connect } from "react-redux";
 import { createUserProfile } from "../../state/users";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Box,
   Button,
@@ -12,65 +12,50 @@ import {
   Divider,
   Grid,
   TextField,
-  makeStyles
-} from '@material-ui/core';
-
+  makeStyles,
+} from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
+const ProfileDetails = (props) => {
+  const { className, createUserProfile } = props;
 
-const ProfileDetails = props => { 
-    const { 
-        className, 
-        createUserProfile
-    } = props;
+  const classes = useStyles();
 
-const classes = useStyles();
-
-const [profileData, setProfileData] = useState({
+  const [profileData, setProfileData] = useState({
     age: 0,
-    gender: '',
-    location: '',
-    bio : '',
-});
+    gender: "",
+    location: "",
+    bio: "",
+  });
 
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = event => {
-      event.preventDefault();
-      createUserProfile(profileData);
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createUserProfile(profileData);
+  };
 
   return (
     <form
-    onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       autoComplete="off"
-    //   noValidate
+      //   noValidate
       className={clsx(classes.root, className)}
     >
       <Card>
-        <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
-        />
+        <CardHeader subheader="The information can be edited" title="Profile" />
         <Divider />
         <CardContent>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 helperText="Please specify your age"
@@ -83,11 +68,7 @@ const [profileData, setProfileData] = useState({
                 type="number"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="Gender"
@@ -98,11 +79,7 @@ const [profileData, setProfileData] = useState({
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label="Location"
@@ -113,11 +90,7 @@ const [profileData, setProfileData] = useState({
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+            <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
                 label=" Bio"
@@ -126,21 +99,12 @@ const [profileData, setProfileData] = useState({
                 value={profileData.bio}
                 variant="outlined"
               />
-             
             </Grid>
           </Grid>
         </CardContent>
         <Divider />
-        <Box
-          display="flex"
-          justifyContent="flex-end"
-          p={2}
-        >
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-          >
+        <Box display="flex" justifyContent="flex-end" p={2}>
+          <Button color="primary" variant="contained" type="submit">
             Save details
           </Button>
         </Box>
@@ -150,7 +114,9 @@ const [profileData, setProfileData] = useState({
 };
 
 ProfileDetails.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
-export default connect((state) => state.profile, {createUserProfile})(ProfileDetails);
+export default connect((state) => state.profile, { createUserProfile })(
+  ProfileDetails
+);

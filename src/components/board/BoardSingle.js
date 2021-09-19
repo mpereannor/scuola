@@ -31,7 +31,7 @@ const BoardSingle = (props) => {
 
   useEffect(() => {
     getBoard(boardId);
-  }, [getBoard, boardId]);
+  }, [boardId]);
 
   const classes = useStyles();
 

@@ -83,7 +83,6 @@ const Login = (props) => {
                         inputProps={{ maxLength: 20 }}
                         fullWidth
                         margin="normal"
-                        defaultValue={props.username}
                       />
                     )}
                   />
@@ -103,7 +102,6 @@ const Login = (props) => {
                         required
                         fullWidth
                         margin="normal"
-                        defaultValue={props.email}
                       />
                     )}
                   />
@@ -124,7 +122,6 @@ const Login = (props) => {
                         required
                         fullWidth
                         margin="normal"
-                        defaultValue={props.password}
                       />
                     )}
                   />
