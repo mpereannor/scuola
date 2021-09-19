@@ -64,9 +64,10 @@ const Register = (props) => {
             <Controller
               name={"username"}
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <TextField
-                id="username"
+                  id="username"
                   // {...register("username")}
                   inputRef={register}
                   name="username"
@@ -83,6 +84,7 @@ const Register = (props) => {
             <Controller
               name={"fullname"}
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <TextField
                   id="fullname"
@@ -103,6 +105,7 @@ const Register = (props) => {
             <Controller
               name={"email"}
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <TextField
                   id="email"
@@ -115,26 +118,27 @@ const Register = (props) => {
                   fullWidth
                   margin="normal"
                   defaultValue={props.email}
-                  />
+                />
               )}
             />
 
             <Controller
               name={"password"}
               control={control}
+              defaultValue=""
               render={({ field }) => (
                 <TextField
-                id="password"
-                // {...register("password")}
-                name="password"
-                inputRef={register}
-                label="Password"
-                type="password"
-                variant="outlined"
-                required
-                fullWidth
-                margin="normal"
-                defaultValue={props.password}
+                  id="password"
+                  // {...register("password")}
+                  name="password"
+                  inputRef={register}
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  margin="normal"
+                  defaultValue={props.password}
                 />
               )}
             />

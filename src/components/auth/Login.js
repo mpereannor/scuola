@@ -71,6 +71,7 @@ const Login = (props) => {
                   <Controller
                     name={"username"}
                     control={control}
+                    defaultValue=""
                     render={({ field }) => (
                       <TextField
                         id="username"
@@ -102,6 +103,7 @@ const Login = (props) => {
                   <Controller
                     name={"email"}
                     control={control}
+                    defaultValue=""
                     render={({ field }) => (
                       <TextField
                         id="email"
@@ -145,6 +147,7 @@ const Login = (props) => {
                   <Controller
                     name={"password"}
                     control={control}
+                    defaultValue=""
                     render={({ field }) => (
                       <TextField
                         id="password"
