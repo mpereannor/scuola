@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Register = (props) => {
-  console.log('pluie', props)
+  console.log("pluie", props);
   const classes = useStyles();
-  const { register, handleSubmit, errors  } = useForm();
+  const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => props.registerUser(data);
 
   return (
@@ -60,57 +60,84 @@ const Register = (props) => {
                 Use your email to create a new account
               </Typography>
             </Box>
-            <TextField
-              id="username"
-              // inputRef={register}
-              { ...register('username')}
-              name="username"
-              label="Username"
-              variant="outlined"
-              required
-              inputProps={{ maxLength: 20 }}
-              fullWidth
-              margin="normal"
-              />
-            <TextField
-              id="fullname"
-              // inputRef={register}
-              { ...register('fullname')}
-              name="fullname"
-              label="Fullname"
-              variant="outlined"
-              required
-              inputProps={{ maxLength: 50 }}
-              fullWidth
-              margin="normal"
-              />
-            <TextField
-              id="email"
-              // inputRef={register}
-              { ...register('email')}
-              name="email"
-              label="Email Address"
-              variant="outlined"
-              required
-              fullWidth
-              margin="normal"
-              />
 
-            <TextField
-              id="password"
-              // inputRef={register}
-              { ...register('password')}
-              name="password"
-              label="Password"
-              type="password"
-              variant="outlined"
-              required
-              fullWidth
-              margin="normal"
-              />
-            { 
-              errors.message
-            }
+            <Controller
+              name={"username"}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                id="username"
+                  // {...register("username")}
+                  inputRef={register}
+                  name="username"
+                  label="Username"
+                  variant="outlined"
+                  required
+                  inputProps={{ maxLength: 20 }}
+                  fullWidth
+                  margin="normal"
+                  defaultValue={props.username}
+                />
+              )}
+            />
+            <Controller
+              name={"fullname"}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id="fullname"
+                  // {...register("fullname")}
+                  inputRef={register}
+                  name="fullname"
+                  label="Fullname"
+                  variant="outlined"
+                  required
+                  inputProps={{ maxLength: 50 }}
+                  defaultValue={props.fullname}
+                  fullWidth
+                  margin="normal"
+                />
+              )}
+            />
+
+            <Controller
+              name={"email"}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id="email"
+                  // {...register("email")}
+                  inputRef={register}
+                  name="email"
+                  label="Email Address"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  margin="normal"
+                  defaultValue={props.email}
+                  />
+              )}
+            />
+
+            <Controller
+              name={"password"}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                id="password"
+                // {...register("password")}
+                name="password"
+                inputRef={register}
+                label="Password"
+                type="password"
+                variant="outlined"
+                required
+                fullWidth
+                margin="normal"
+                defaultValue={props.password}
+                />
+              )}
+            />
 
             <Box my={2}>
               <Button

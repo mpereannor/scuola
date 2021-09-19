@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { connect } from "react-redux";
 import { login } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
@@ -21,20 +21,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
     "& .MuiOutlinedInput-root": {
-        "& fieldset": { 
-            borderRadius : "2px",
-            borderWidth: "0.15em"
-        },
-        "&.Mui-focused fieldset" : { 
-            border: "0.2em solid #011628"
-        }
+      "& fieldset": {
+        borderRadius: "2px",
+        borderWidth: "0.15em",
+      },
+      "&.Mui-focused fieldset": {
+        border: "0.2em solid #011628",
+      },
     },
   },
 }));
 
 const Login = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => props.login(data);
   return (
     <Page className={classes.root} title="Login">
@@ -47,11 +47,11 @@ const Login = (props) => {
         <Container maxWidth="sm">
           <div>
             <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-              <Box 
-              mb={4}
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
+              <Box
+                mb={4}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
               >
                 <Typography color="textPrimary" variant="h2">
                   Sign in
@@ -66,28 +66,58 @@ const Login = (props) => {
                   Login with email address
                 </Typography>
               </Box>
-              <Box
-                display="flex"
-                flexDirection="column"
-              >
-                <Box
-                
-                >
-                  <TextField
+              <Box display="flex" flexDirection="column">
+                <Box>
+                  <Controller
+                    name={"username"}
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        id="username"
+                        // {...register("username")}
+                        inputRef={register}
+                        name="username"
+                        label="Username"
+                        variant="outlined"
+                        required
+                        inputProps={{ maxLength: 20 }}
+                        fullWidth
+                        margin="normal"
+                        defaultValue={props.username}
+                      />
+                    )}
+                  />
+                  {/* <TextField
                     id="username"
-                    // inputRef={register}
+                    inputRef={register}
                     { ...register('username')}
                     name="username"
                     label="Username"
                     variant="outlined"
                     required
                     fullWidth
-                  />
+                  /> */}
                 </Box>
-                <Box
-                mt={2}
-                >
-                  <TextField
+                <Box mt={2}>
+                  <Controller
+                    name={"email"}
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        id="email"
+                        // {...register("email")}
+                        inputRef={register}
+                        name="email"
+                        label="Email Address"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        margin="normal"
+                        defaultValue={props.email}
+                      />
+                    )}
+                  />
+                  {/* <TextField
                     id="email"
                     { ...register('email')}
                     // inputRef={register}
@@ -96,12 +126,10 @@ const Login = (props) => {
                     variant="outlined"
                     required
                     fullWidth
-                  />
+                  /> */}
                 </Box>
-                <Box
-                 mt={2} 
-                >
-                  <TextField
+                <Box mt={2}>
+                  {/* <TextField
                     id="password"
                     // inputRef={register}
               { ...register('password')}
@@ -113,12 +141,29 @@ const Login = (props) => {
                     variant="outlined"
                     required
                     fullWidth
+                  /> */}
+                  <Controller
+                    name={"password"}
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        id="password"
+                        // {...register("password")}
+                        name="password"
+                        inputRef={register}
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        margin="normal"
+                        defaultValue={props.password}
+                      />
+                    )}
                   />
                 </Box>
               </Box>
-              {
-                errors.message
-              }
+              {errors.message}
 
               <Box my={2}>
                 <Button
