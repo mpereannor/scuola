@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Register = (props) => {
-  console.log("pluie", props);
+  console.log("rain", props);
   const classes = useStyles();
   const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => props.registerUser(data);
