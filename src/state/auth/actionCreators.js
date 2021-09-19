@@ -6,7 +6,7 @@ import history from '../../utils/history';
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
 
-export const register = (credentials) => dispatch => { 
+export const registerUser = (credentials) => dispatch => { 
     
     dispatch({ type: types.REQUEST_START });
     Axios()

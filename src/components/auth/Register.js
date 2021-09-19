@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
-import { register } from "../../state/auth";
+import { registerUser } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
@@ -32,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Register = (props) => {
+  console.log('pluie', props)
   const classes = useStyles();
   const { register, handleSubmit, errors  } = useForm();
-  const onSubmit = (data) => props.register(data);
+  const onSubmit = (data) => props.registerUser(data);
 
   return (
     <Page className={classes.root} title="Register">
@@ -135,4 +136,4 @@ const Register = (props) => {
   );
 };
 
-export default connect((state) => state.onboard, { register })(Register);
+export default connect((state) => state.onboard, { registerUser })(Register);
