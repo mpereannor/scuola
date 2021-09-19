@@ -75,7 +75,6 @@ const Login = (props) => {
                     render={({ field }) => (
                       <TextField
                         id="username"
-                        // {...register("username")}
                         inputRef={register}
                         name="username"
                         label="Username"
@@ -88,16 +87,6 @@ const Login = (props) => {
                       />
                     )}
                   />
-                  {/* <TextField
-                    id="username"
-                    inputRef={register}
-                    { ...register('username')}
-                    name="username"
-                    label="Username"
-                    variant="outlined"
-                    required
-                    fullWidth
-                  /> */}
                 </Box>
                 <Box mt={2}>
                   <Controller
@@ -107,7 +96,6 @@ const Login = (props) => {
                     render={({ field }) => (
                       <TextField
                         id="email"
-                        // {...register("email")}
                         inputRef={register}
                         name="email"
                         label="Email Address"
@@ -119,31 +107,8 @@ const Login = (props) => {
                       />
                     )}
                   />
-                  {/* <TextField
-                    id="email"
-                    { ...register('email')}
-                    // inputRef={register}
-                    name="email"
-                    label="Email Address"
-                    variant="outlined"
-                    required
-                    fullWidth
-                  /> */}
                 </Box>
                 <Box mt={2}>
-                  {/* <TextField
-                    id="password"
-                    // inputRef={register}
-              { ...register('password')}
-           
-
-                    name="password"
-                    label="Password"
-                    type="password"
-                    variant="outlined"
-                    required
-                    fullWidth
-                  /> */}
                   <Controller
                     name={"password"}
                     control={control}
@@ -151,7 +116,6 @@ const Login = (props) => {
                     render={({ field }) => (
                       <TextField
                         id="password"
-                        // {...register("password")}
                         name="password"
                         inputRef={register}
                         label="Password"

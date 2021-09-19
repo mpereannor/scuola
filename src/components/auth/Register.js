@@ -68,7 +68,6 @@ const Register = (props) => {
               render={({ field }) => (
                 <TextField
                   id="username"
-                  // {...register("username")}
                   inputRef={register}
                   name="username"
                   label="Username"
@@ -88,7 +87,6 @@ const Register = (props) => {
               render={({ field }) => (
                 <TextField
                   id="fullname"
-                  // {...register("fullname")}
                   inputRef={register}
                   name="fullname"
                   label="Fullname"
@@ -109,7 +107,6 @@ const Register = (props) => {
               render={({ field }) => (
                 <TextField
                   id="email"
-                  // {...register("email")}
                   inputRef={register}
                   name="email"
                   label="Email Address"
@@ -129,7 +126,6 @@ const Register = (props) => {
               render={({ field }) => (
                 <TextField
                   id="password"
-                  // {...register("password")}
                   name="password"
                   inputRef={register}
                   label="Password"
