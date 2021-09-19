@@ -1,5 +1,4 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
 import { connect } from "react-redux";
 import { login } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
@@ -12,6 +11,8 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import { withFormik } from "formik";
+import * as yup from "yup";
 import Page from "../Page";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,10 +33,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = (props) => {
+const SimpleLoginForm = (props) => {
   const classes = useStyles();
-  const { register, handleSubmit, control, errors } = useForm();
-  const onSubmit = (data) => props.login(data);
+
   return (
     <Page className={classes.root} title="Login">
       <Box
@@ -46,7 +46,15 @@ const Login = (props) => {
       >
         <Container maxWidth="sm">
           <div>
-            <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className={classes.root}
+              onSubmit={
+                typeof props.onSubmit === "function"
+                  ? props.onSubmit
+                  : props.handleSubmit
+              }
+              noValidate
+            >
               <Box
                 mb={4}
                 display="flex"
@@ -68,84 +76,56 @@ const Login = (props) => {
               </Box>
               <Box display="flex" flexDirection="column">
                 <Box>
-                  <Controller
-                    name={"username"}
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <TextField
-                        id="username"
-                        inputRef={register}
-                        name="username"
-                        label="Username"
-                        variant="outlined"
-                        required
-                        inputProps={{ maxLength: 20 }}
-                        fullWidth
-                        margin="normal"
-                      />
-                    )}
+                  <TextField
+                    id="email"
+                    name="email"
+                    label="Email"
+                    variant="outlined"
+                    required
+                    type="name"
+                    autoComplete="fullname"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    helperText={props.errors.email}
+                    fullWidth
+                    margin="normal"
                   />
                 </Box>
                 <Box mt={2}>
-                  <Controller
-                    name={"email"}
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <TextField
-                        id="email"
-                        inputRef={register}
-                        name="email"
-                        label="Email Address"
-                        variant="outlined"
-                        required
-                        fullWidth
-                        margin="normal"
-                      />
-                    )}
+                  <TextField
+                    id="password"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    margin="normal"
+                    autoComplete="password"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    helperText={props.errors.password}
                   />
                 </Box>
-                <Box mt={2}>
-                  <Controller
-                    name={"password"}
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <TextField
-                        id="password"
-                        name="password"
-                        inputRef={register}
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        required
-                        fullWidth
-                        margin="normal"
-                      />
-                    )}
-                  />
-                </Box>
-              </Box>
-              {errors.message}
 
-              <Box my={2}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                >
-                  Login
-                </Button>
+                <Box my={2}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                  >
+                    Sign In
+                  </Button>
+                </Box>
+                <Typography color="textSecondary" variant="body1">
+                  Don&apos;t have an account?{" "}
+                  <Link component={RouterLink} to="/register" variant="h6">
+                    Sign up
+                  </Link>
+                </Typography>
               </Box>
-              <Typography color="textSecondary" variant="body1">
-                Don&apos;t have an account?{" "}
-                <Link component={RouterLink} to="/register" variant="h6">
-                  Sign up
-                </Link>
-              </Typography>
             </form>
           </div>
         </Container>
@@ -153,5 +133,21 @@ const Login = (props) => {
     </Page>
   );
 };
+
+export const Login = withFormik({
+  mapPropsToValues: () => ({
+    email: "",
+    password: "",
+    isFetching: false,
+    isLoggedIn: false,
+  }),
+  validationSchema: yup.object().shape({
+    password: yup.string().required("Please enter your password"),
+  }),
+  handleSubmit: (values, { props }) => {
+    props.login(values);
+  },
+  displayName: "loginForm",
+})(SimpleLoginForm);
 
 export default connect((state) => state.onboard, { login })(Login);
