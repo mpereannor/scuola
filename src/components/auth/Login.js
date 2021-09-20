@@ -83,7 +83,7 @@ const SimpleLoginForm = (props) => {
                     variant="outlined"
                     required
                     type="name"
-                    autoComplete="fullname"
+                    autoComplete="email"
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     helperText={props.errors.email}
@@ -142,6 +142,7 @@ export const Login = withFormik({
     isLoggedIn: false,
   }),
   validationSchema: yup.object().shape({
+    email: yup.string().required("Please enter a valid email address"),
     password: yup.string().required("Please enter your password"),
   }),
   handleSubmit: (values, { props }) => {

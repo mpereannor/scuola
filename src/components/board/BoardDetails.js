@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { createBoard } from "../../state/boards";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,11 +7,15 @@ import {
   Button,
   TextField,
   Radio,
-  Typography,
+  RadioGroup,
+  FormControlLabel,
   Container,
   Box,
   Card,
 } from "@material-ui/core";
+import { withFormik } from "formik";
+
+const options = ["public", "private"];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,82 +38,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BoardDetails = (props) => {
+const BoardForm = (props) => {
   const { className } = props;
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = useState("public");
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => props.createBoard(data);
 
   return (
     <Container className={clsx(classes.root, className)}>
       <Card variant="outlined">
-        <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={classes.root}
+          onSubmit={
+            typeof props.onSubmit === "function"
+              ? props.onSubmit
+              : props.handleSubmit
+          }
+          noValidate
+        >
           <Box>
             <Box m={2}>
               <TextField
                 id="name"
-                inputRef={register}
                 name="name"
-                label="name"
+                label="Name"
                 variant="outlined"
                 required
+                type="name"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                helperText={props.errors.email}
                 inputProps={{ maxLength: 20 }}
               />
             </Box>
             <Box m={2}>
               <TextField
                 id="description"
-                inputRef={register}
-                name="description"
                 label="description"
+                name="description"
                 variant="outlined"
                 required
+                type="name"
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                helperText={props.errors.email}
                 inputProps={{ maxLength: 280 }}
               />
             </Box>
 
             <Box m={2} display="flex">
-              <div
-                style={{
-                  " margin": "1.2em",
-                }}
-                display="flex"
-              >
-                <div>
-                  <Typography style={{ "marginRight" : "1em"}} color="textPrimary" variant="h5" gutterBottom>
-                    Public
-                  </Typography>
-                </div>
-                <div>
-                  <Radio
-                    inputRef={register}
-                    checked={selectedValue === "public"}
-                    onChange={handleChange}
-                    value="public"
-                    name="board_type"
-                    label="Public"
-                    inputProps={{ "aria-label": "Public" }}
+              <RadioGroup name={"board_type"}>
+                {options.map((option) => (
+                  <FormControlLabel
+                    key={option}
+                    value={option}
+                    control={<Radio />}
+                    onChange={props.handleChange}
+                    label={option.toUpperCase()}
                   />
-                </div>
-              </div>
-              <div>
-                <Typography style={{ "marginRight" : "1em"}} color="textPrimary" variant="h5" gutterBottom>
-                  Private
-                </Typography>
-                <Radio
-                  inputRef={register}
-                  checked={selectedValue === "private"}
-                  onChange={handleChange}
-                  value="private"
-                  name="board_type"
-                  label="Private"
-                  inputProps={{ "aria-label": "Private" }}
-                />
-              </div>
+                ))}
+              </RadioGroup>
             </Box>
           </Box>
           <Box m={2}>
@@ -124,10 +108,18 @@ const BoardDetails = (props) => {
     </Container>
   );
 };
-BoardDetails.propTypes = {
-    className: PropTypes.string,
-  };
-  
+
+export const BoardDetails = withFormik({
+  mapPropsToValues: () => ({
+    name: "",
+    description: "",
+    option: "public",
+  }),
+  handleSubmit: (values, { props }) => {
+    props.createBoard(values);
+  },
+  displayName: "boardForm",
+})(BoardForm);
 
 export default connect((state) => state.userBoard, { createBoard })(
   BoardDetails

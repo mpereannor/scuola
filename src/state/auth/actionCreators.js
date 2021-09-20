@@ -1,12 +1,13 @@
 import * as types from './actionTypes';
 import { Axios, axiosWithAuth } from '../../utils/axios';
 import history from '../../utils/history';
+// import { useHistory } from "react-router-dom";
 
 
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
-
-export const registerUser = (credentials) => dispatch => { 
+// const history = useHistory();
+export const registerUser = (credentials, context ) => dispatch => { 
     
     dispatch({ type: types.REQUEST_START });
     Axios()
@@ -18,7 +19,7 @@ export const registerUser = (credentials) => dispatch => {
         });
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('id', res.data.user.id)
-        history.push(`/login`);
+        history.push(`/login`)
       
     })
     .catch(error => { 

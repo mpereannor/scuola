@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../../state/auth";
 import { Link as RouterLink } from "react-router-dom";
+
 import {
   Box,
   Button,
@@ -92,7 +93,6 @@ const SimpleSignUpForm = (props) => {
               autoComplete="fullname"
               onChange={props.handleChange}
               onBlur={props.handleBlur}
-              // error={props.errors.fullname}
               helperText={props.errors.fullname}
               inputProps={{ maxLength: 50 }}
               fullWidth
