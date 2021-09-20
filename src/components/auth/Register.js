@@ -162,7 +162,7 @@ export const Register = withFormik({
   }),
   validationSchema: yup.object().shape({
     email: yup.string().email().required("Please enter your email address"),
-    password: yup.string().required("Please enter your password"),
+    password: yup.string().required("Please must be at least 8 words"),
   }),
   handleSubmit: (values, { props }) => {
     props.registerUser(values);

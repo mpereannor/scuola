@@ -1,12 +1,9 @@
 import * as types from './actionTypes';
 import { Axios, axiosWithAuth } from '../../utils/axios';
 import history from '../../utils/history';
-// import { useHistory } from "react-router-dom";
-
 
 const registerUrl = 'api/auth/register';
 const loginUrl = 'api/auth/login';
-// const history = useHistory();
 export const registerUser = (credentials, context ) => dispatch => { 
     
     dispatch({ type: types.REQUEST_START });
